@@ -341,6 +341,15 @@
     .club-price span { font-size: 0.9rem; font-weight: 400; color: var(--text-60); }
     @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } .club-teaser { flex-direction: column; align-items: flex-start; } }
 
+    /* Toggle qué incluye */
+    .card-toggle { display: flex; align-items: center; gap: 7px; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 0.8rem; font-weight: 600; color: var(--accent); padding: 0; margin-bottom: 16px; letter-spacing: 0.02em; transition: opacity 0.15s; }
+    .card-toggle:hover { opacity: 0.7; }
+    .card.featured .card-toggle { color: rgba(255,255,255,0.65); }
+    .toggle-arrow { display: inline-block; transition: transform 0.25s; font-style: normal; }
+    .card-toggle.open .toggle-arrow { transform: rotate(180deg); }
+    .card-details { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .card-details.open { max-height: 600px; }
+
     /* ==============================
        TESTIMONIOS — WHATSAPP REALES
     ============================== */
@@ -887,82 +896,102 @@
     </div>
 
     <div class="cards fade">
+
+      <!-- Curso -->
       <div class="card">
-        <div class="card-label">Starter</div>
-        <h3>Pack Inicial CRT</h3>
-        <p>Para entender la lógica base del sistema antes de invertir en el curso completo.</p>
-        <div class="card-soon">Próximamente</div>
-        <div class="card-note">Se abre el lunes 11/05/2026</div>
-        <hr class="card-sep">
-        <ul>
-          <li><span class="card-check">✓</span> PDF: Lógica institucional del mercado</li>
-          <li><span class="card-check">✓</span> PDF: Los 4 errores mentales del trader</li>
-          <li><span class="card-check">✓</span> Guía de gestión del riesgo (1–2% por trade)</li>
-          <li><span class="card-check">✓</span> Introducción a las 3 capas del sistema</li>
-          <li><span class="card-check">✓</span> Acceso al grupo de Telegram</li>
-        </ul>
-        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20para%20el%20Pack%20Starter%20CRT" class="btn btn-ghost">Anotarme →</a>
+        <div class="card-label">Autodidacta</div>
+        <h3>Curso Sistema CRT</h3>
+        <p>El sistema completo explicado paso a paso. Aprendé a tu ritmo, desde cualquier lugar.</p>
+        <div class="card-price">$97</div>
+        <div class="card-note">Pago único · Acceso de por vida</div>
+        <button class="card-toggle" onclick="toggleDetails(this)">
+          Ver qué incluye <span class="toggle-arrow">↓</span>
+        </button>
+        <div class="card-details">
+          <hr class="card-sep">
+          <ul>
+            <li><span class="card-check">✓</span> 6 módulos de video pregrabado</li>
+            <li><span class="card-check">✓</span> Las 3 capas del CRT explicadas en profundidad</li>
+            <li><span class="card-check">✓</span> Cómo identificar niveles institucionales en TradingView</li>
+            <li><span class="card-check">✓</span> El trigger de entrada: la señal exacta para operar</li>
+            <li><span class="card-check">✓</span> Gestión del riesgo: SL, TP y ratio mínimo</li>
+            <li><span class="card-check">✓</span> Setups reales analizados de principio a fin</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Curso+Sistema+CRT" class="btn btn-ghost">Quiero el curso →</a>
       </div>
 
+      <!-- Bootcamp -->
       <div class="card featured">
         <div class="card-badge">Más elegido</div>
-        <div class="card-label">Completo</div>
-        <h3>Curso Sistema CRT</h3>
-        <p>El sistema completo, explicado capa por capa. Desde la lógica hasta la ejecución real.</p>
-        <div class="card-soon">Próximamente</div>
-        <div class="card-note">Se abre el lunes 11/05/2026</div>
-        <hr class="card-sep">
-        <ul>
-          <li><span class="card-check">✓</span> Las 3 capas del sistema en profundidad</li>
-          <li><span class="card-check">✓</span> Los 5 Keylevels con criterios de validación</li>
-          <li><span class="card-check">✓</span> El Trigger de entrada: definición y casos reales</li>
-          <li><span class="card-check">✓</span> Checklist operativo completo</li>
-          <li><span class="card-check">✓</span> Sistema de decisión SI → ENTONCES</li>
-          <li><span class="card-check">✓</span> Gestión del trade: SL, TP-1, TP-2</li>
-          <li><span class="card-check">✓</span> Módulo de psicología operativa</li>
-          <li><span class="card-check">✓</span> Ejemplos reales grabados en video</li>
-          <li><span class="card-check">✓</span> Grupo privado de alumnos</li>
-        </ul>
-        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20para%20el%20Curso%20Completo%20CRT" class="btn btn-ghost">Anotarme →</a>
+        <div class="card-label">Grupal</div>
+        <h3>Bootcamp CRT</h3>
+        <p>Un mes de trabajo en grupo con Guillermo y Mauri. Aprendés el sistema y lo aplicás en vivo.</p>
+        <div class="card-price">$197<span style="font-size:1rem;font-weight:500;letter-spacing:0">/persona</span></div>
+        <div class="card-note">Grupos de 6 a 8 personas · 4 sesiones Zoom</div>
+        <button class="card-toggle" onclick="toggleDetails(this)">
+          Ver qué incluye <span class="toggle-arrow">↓</span>
+        </button>
+        <div class="card-details">
+          <hr class="card-sep">
+          <ul>
+            <li><span class="card-check">✓</span> 4 sesiones Zoom en vivo (Guillermo + Mauri)</li>
+            <li><span class="card-check">✓</span> Grupo reducido de 6 a 8 personas</li>
+            <li><span class="card-check">✓</span> Revisión grupal de trades en tiempo real</li>
+            <li><span class="card-check">✓</span> Canal privado de Telegram de la cohorte</li>
+            <li><span class="card-check">✓</span> Grabaciones de todas las sesiones</li>
+            <li><span class="card-check">✓</span> 1 mes de Club CRT incluido</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Bootcamp+CRT" class="btn btn-ghost">Quiero el Bootcamp →</a>
       </div>
 
+      <!-- Mentoría -->
       <div class="card">
         <div class="card-label">Premium</div>
         <h3>Mentoría 1 a 1</h3>
-        <p>Trabajo directo con vos. Analizamos tu operativa, corregimos en tiempo real y construimos tu proceso.</p>
-        <div class="card-soon">Próximamente</div>
-        <div class="card-note">Se abre el lunes 11/05/2026</div>
-        <hr class="card-sep">
-        <ul>
-          <li><span class="card-check">✓</span> Todo lo del Curso Completo incluido</li>
-          <li><span class="card-check">✓</span> 2 sesiones en vivo 1 a 1 por Zoom</li>
-          <li><span class="card-check">✓</span> Revisión de tus operaciones en tiempo real</li>
-          <li><span class="card-check">✓</span> Feedback sobre tus análisis diarios</li>
-          <li><span class="card-check">✓</span> Soporte directo por WhatsApp (30 días)</li>
-          <li><span class="card-check">✓</span> Plan personalizado según tu estilo</li>
-          <li><span class="card-check">✓</span> Seguimiento semana a semana</li>
-        </ul>
-        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20para%20la%20Mentor%C3%ADa%201%20a%201" class="btn btn-ghost">Anotarme →</a>
+        <p>Trabajo personalizado con vos. Analizamos tu operatoria y construimos tu proceso desde cero.</p>
+        <div class="card-price">$397</div>
+        <div class="card-note">Pago único · 4 semanas de acompañamiento</div>
+        <button class="card-toggle" onclick="toggleDetails(this)">
+          Ver qué incluye <span class="toggle-arrow">↓</span>
+        </button>
+        <div class="card-details">
+          <hr class="card-sep">
+          <ul>
+            <li><span class="card-check">✓</span> 4 sesiones Zoom 1 a 1 (Guillermo + Mauri)</li>
+            <li><span class="card-check">✓</span> Diagnóstico personalizado de tu operatoria</li>
+            <li><span class="card-check">✓</span> CRT aplicado a tus pares y mercados</li>
+            <li><span class="card-check">✓</span> Revisión de tus trades en tiempo real</li>
+            <li><span class="card-check">✓</span> Soporte por WhatsApp 30 días (lun–vie)</li>
+            <li><span class="card-check">✓</span> Plan de trading personalizado para 60 días</li>
+            <li><span class="card-check">✓</span> 1 mes de Club CRT incluido</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+la+Mentor%C3%ADa+1+a+1" class="btn btn-ghost">Quiero la Mentoría →</a>
       </div>
+
     </div>
 
-    <!-- Garantía al lado de los precios -->
+    <!-- Garantía -->
     <div class="guarantee-strip fade">
       <span class="gs-icon">🛡️</span>
       <span><strong>Garantía de 7 días:</strong> si en una semana no encontrás valor real en el material, te devolvemos el dinero. Sin preguntas, sin vueltas.</span>
     </div>
 
+    <!-- Club CRT -->
     <div class="club-teaser fade">
       <div>
-        <div class="label">Próximamente</div>
-        <h3>Club CRT — Membresía mensual</h3>
-        <p>Análisis en vivo, sesiones grupales, comunidad activa y acceso al sistema en tiempo real.</p>
+        <div class="label">Membresía mensual</div>
+        <h3>Club CRT</h3>
+        <p>Proyección del mercado cada domingo · Q&A en vivo cada jueves · Canal privado de Telegram · Biblioteca de grabaciones.</p>
       </div>
       <div>
         <div class="club-price">$25<span>/mes</span></div>
-        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20a%20la%20lista%20de%20espera%20del%20Club%20CRT" class="btn btn-ghost" style="margin-top:12px;">Lista de espera →</a>
+        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Club+CRT" class="btn btn-ghost" style="margin-top:12px;">Quiero entrar →</a>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1047,6 +1076,12 @@
 </footer>
 
 <script>
+  function toggleDetails(btn) {
+    const details = btn.nextElementSibling;
+    btn.classList.toggle('open');
+    details.classList.toggle('open');
+  }
+
   function toggleFaq(el) {
     const item = el.parentElement;
     const isOpen = item.classList.contains('open');
