@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Los 3 errores que destruyen cualquier cuenta de trading</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:      #EFEFED;
+      --primary: #003157;
+      --accent:  #004371;
+      --white:   #ffffff;
+      --text-60: rgba(0, 49, 87, 0.60);
+      --border:  rgba(0, 49, 87, 0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ccc;
+      color: var(--primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Página ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--bg);
+      margin: 20px auto;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media print {
+      body { background: none; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        width: 100%;
+        min-height: 100vh;
+      }
+    }
+
+    /* ── Barra superior de marca ── */
+    .top-bar {
+      background: var(--primary);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar-brand {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.04em;
+    }
+    .top-bar-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── Barra inferior de marca ── */
+    .bottom-bar {
+      background: var(--primary);
+      padding: 12px 40px;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .bottom-bar span {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .bottom-bar strong {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+    }
+
+    /* ── Contenido interior ── */
+    .content {
+      padding: 48px 48px 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.25;
+    }
+    p {
+      font-size: 0.92rem;
+      color: var(--text-60);
+      line-height: 1.75;
+    }
+    p strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    /* ── PORTADA ── */
+    .cover-content {
+      padding: 56px 48px 0;
+      flex: 1;
+    }
+    .cover-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+    }
+    .cover-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .cover-title {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--primary);
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
+    .cover-title span {
+      color: var(--accent);
+    }
+    .cover-sub {
+      font-size: 1rem;
+      color: var(--text-60);
+      line-height: 1.65;
+      max-width: 400px;
+      margin-bottom: 48px;
+    }
+    .cover-promise {
+      background: var(--primary);
+      border-radius: 16px;
+      padding: 28px 32px;
+      max-width: 420px;
+    }
+    .cover-promise p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .cover-promise p::before { content: '"'; }
+    .cover-promise p::after  { content: '"'; }
+
+    .cover-visual {
+      position: absolute;
+      right: 0;
+      top: 64px;
+      bottom: 0;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .cv-block {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cv-block-dark  { background: var(--primary); }
+    .cv-block-light { background: rgba(0,49,87,0.06); }
+    .cv-num {
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: -0.05em;
+    }
+
+    /* ── INTRO ── */
+    .intro-box {
+      background: var(--primary);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 28px;
+    }
+    .intro-box h2 {
+      color: var(--white);
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .intro-box p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .stat-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-n {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-l {
+      font-size: 0.7rem;
+      color: var(--text-60);
+      line-height: 1.4;
+    }
+
+    /* ── ERROR ── */
+    .error-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .error-num {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: var(--border);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -8px;
+    }
+    .error-header-text h2 {
+      margin-bottom: 6px;
+    }
+    .error-header-text .label {
+      margin-bottom: 0;
+    }
+
+    .callout {
+      background: var(--white);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .callout p {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .consequence-box {
+      background: rgba(0,49,87,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .consequence-box h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .consequence-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .consequence-item:last-child { border-bottom: none; }
+    .consequence-arrow {
+      font-size: 0.75rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+    .consequence-item p {
+      font-size: 0.85rem;
+    }
+
+    /* ── SOLUCIÓN ── */
+    .solution-header {
+      background: var(--primary);
+      margin: -48px -48px 36px;
+      padding: 48px 48px 36px;
+    }
+    .solution-header .label { color: rgba(255,255,255,0.4); }
+    .solution-header h2 { color: var(--white); margin-bottom: 12px; }
+    .solution-header p  { color: rgba(255,255,255,0.65); }
+
+    .layers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .layer-box {
+      background: var(--white);
+      padding: 20px;
+    }
+    .layer-n {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .layer-box h3 { font-size: 0.9rem; margin-bottom: 6px; }
+    .layer-box p  { font-size: 0.78rem; }
+
+    .vs-table {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .vs-head {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      background: var(--primary);
+      padding: 11px 18px;
+    }
+    .vs-head span { font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.6); }
+    .vs-head span:last-child { color: rgba(255,255,255,0.95); }
+    .vs-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      padding: 10px 18px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      background: var(--white);
+    }
+    .vs-row:nth-child(even) { background: var(--bg); }
+    .vs-bad  { color: rgba(0,49,87,0.35); }
+    .vs-good { color: var(--accent); font-weight: 600; }
+
+    /* ── CTA ── */
+    .cta-box {
+      background: var(--primary);
+      border-radius: 16px;
+      padding: 36px;
+      text-align: center;
+      margin-top: auto;
+    }
+    .cta-box h2 { color: var(--white); margin-bottom: 12px; font-size: 1.5rem; }
+    .cta-box p  { color: rgba(255,255,255,0.65); margin-bottom: 28px; font-size: 0.9rem; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--white);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 14px 32px;
+      border-radius: 8px;
+      letter-spacing: -0.01em;
+    }
+    .cta-note {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     PÁGINA 1 — PORTADA
+══════════════════════════════ -->
+<div class="page">
+  <div class="top-bar">
+    <span class="top-bar-brand">Diario de un Trader</span>
+    <span class="top-bar-tag">Sistema CRT — Material gratuito</span>
+  </div>
+
+  <div class="cover-content">
+    <div class="cover-eyebrow">
+      <span class="cover-dot"></span>
+      Si operás en forex, índices o cripto — esto es para vos
+    </div>
+
+    <h1 class="cover-title">
+      Los <span>3 errores</span><br>
+      que destruyen<br>
+      cualquier cuenta<br>
+      de trading.
+    </h1>
+
+    <p class="cover-sub">
+      No son errores técnicos. Son errores de proceso. Y la mayoría de los traders los comete sin darse cuenta — incluso los que ya llevan años operando.
+    </p>
+
+    <div class="cover-promise">
+      <p>En las próximas páginas vas a identificar exactamente qué está fallando en tu operativa — y cómo corregirlo con un sistema que ya funciona.</p>
+    </div>
+  </div>
+
+  <div class="cv-block cv-block-dark" style="position:absolute;right:0;top:64px;width:180px;bottom:52px;display:flex;align-items:center;justify-content:center;">
+    <span class="cv-num" style="font-size:6rem;color:rgba(255,255,255,0.06);font-weight:900;letter-spacing:-0.05em;">3</span>
+  </div>
+
+  <div class="bottom-bar">
+    <span>Material gratuito — Diario de un Trader</span>
+    <strong>diariodeuntrader.lat</strong>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 2 — INTRODUCCIÓN
+══════════════════════════════ -->
+<div class="page">
+  <div class="top-bar">
+    <span class="top-bar-brand">Diario de un Trader</span>
+    <span class="top-bar-tag">Introducción</span>
+  </div>
+
+  <div class="content">
+    <span class="label">Antes de empezar</span>
+    <h2 style="margin-bottom:20px;">La verdad que nadie<br>te quiere decir.</h2>
+
+    <div class="intro-box">
+      <h2>Si perdés dinero en trading, no es mala suerte.</h2>
+      <p>El mercado no está en tu contra. No hay ninguna conspiración. Lo que pasa es más simple — y más difícil de aceptar: <strong style="color:white;">operás sin un proceso claro</strong>. Y sin proceso, cada trade es una apuesta disfrazada de análisis.</p>
+    </div>
+
+    <p>Yo estuve exactamente en ese lugar. Compraba cursos, seguía señales, probaba indicadores. Tenía semanas buenas que me hacían creer que lo había encontrado, y después rachas que me borraban todo.</p>
+
+    <p style="margin-top:14px;">El problema no era el mercado. Era que <strong>no tenía un sistema real</strong>. Cada vez que operaba, tomaba decisiones distintas basadas en cómo me sentía ese día. No en reglas.</p>
+
+    <div class="callout">
+      <p>Después de más de 3 años operando y documentando cada movimiento, encontré el patrón: los traders que pierden consistentemente cometen los mismos 3 errores. Siempre. Sin excepción.</p>
+    </div>
+
+    <p>Este material es lo que me hubiera cambiado todo cuando empecé. Leelo con honestidad. Es probable que te identifiques con más de uno.</p>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-n">90%</div>
+        <div class="stat-l">de traders minoristas pierde dinero</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-n">3</div>
+        <div class="stat-l">errores de proceso que lo explican todo</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-n">1</div>
+        <div class="stat-l">sistema para dejar de cometerlos</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>diariodeuntrader.lat</span>
+    <strong>Sistema CRT</strong>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 3 — ERROR #1
+══════════════════════════════ -->
+<div class="page">
+  <div class="top-bar">
+    <span class="top-bar-brand">Diario de un Trader</span>
+    <span class="top-bar-tag">Error #1 de 3</span>
+  </div>
+
+  <div class="content">
+    <div class="error-header">
+      <div class="error-num">01</div>
+      <div class="error-header-text">
+        <span class="label">El error más común</span>
+        <h2>Operás sin un<br>sistema definido.</h2>
+      </div>
+    </div>
+
+    <p>Lunes usás medias móviles. Martes seguís una señal de Telegram. Miércoles entrás "porque el precio se ve fuerte". Jueves no operás porque perdiste el día anterior.</p>
+
+    <p style="margin-top:14px;">Cada sesión es diferente. Cada entrada tiene una lógica distinta. No hay un proceso que puedas repetir, revisar ni mejorar — porque no existe.</p>
+
+    <div class="callout">
+      <p>Sin sistema, no operás en base a reglas. Operás en base al estado de ánimo del día. Y el mercado no perdona la inconsistencia.</p>
+    </div>
+
+    <p>Lo más peligroso de este error es que <strong>no se nota cuando ganás</strong>. Una semana buena te convence de que el método funciona. Pero en realidad fue suerte — y la suerte no escala.</p>
+
+    <div class="consequence-box">
+      <h3>Lo que esto te cuesta</h3>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>No podés aprender de tus errores porque cada trade tuvo una lógica diferente.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>No sabés si tu operativa funciona o si simplemente tuviste racha.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Cada pérdida te hace cambiar de estrategia — y nunca le das tiempo a ninguna.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Quemás capital probando cosas nuevas en lugar de ejecutar algo probado.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>diariodeuntrader.lat</span>
+    <strong>Sistema CRT</strong>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 4 — ERROR #2
+══════════════════════════════ -->
+<div class="page">
+  <div class="top-bar">
+    <span class="top-bar-brand">Diario de un Trader</span>
+    <span class="top-bar-tag">Error #2 de 3</span>
+  </div>
+
+  <div class="content">
+    <div class="error-header">
+      <div class="error-num">02</div>
+      <div class="error-header-text">
+        <span class="label">El que más dinero destruye</span>
+        <h2>Tus emociones toman<br>las decisiones.</h2>
+      </div>
+    </div>
+
+    <p>El trade va en tu contra y en lugar de respetar el stop loss, lo movés "para darle espacio". El precio toca tu stop, cierra en pérdida — y dos minutos después hubiera llegado a tu target.</p>
+
+    <p style="margin-top:14px;">O al revés: entrás tarde en un movimiento por miedo a perdértelo. O abrís tres trades seguidos para recuperar lo que perdiste en el primero.</p>
+
+    <div class="callout">
+      <p>Eso no es trading. Es juego. La diferencia entre un trader y un jugador no es el análisis técnico — es si tiene reglas que respeta cuando la presión aparece.</p>
+    </div>
+
+    <p>El problema no es que seas débil mentalmente. Es que <strong>no tenés un sistema de decisión claro</strong>. Cuando el trade se mueve en tu contra, el cerebro busca cualquier justificación para no cerrar. Y sin reglas escritas, siempre encuentra una.</p>
+
+    <div class="consequence-box">
+      <h3>Lo que esto te cuesta</h3>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Pérdidas que podrían haber sido pequeñas se vuelven enormes por no respetar el stop.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>El trading de venganza te lleva a abrir operaciones que no tienen setup — solo desesperación.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>El FOMO te hace entrar tarde, con peor precio y con el riesgo ya ejecutado.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Destruís semanas enteras de trabajo en una sola sesión emocional.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>diariodeuntrader.lat</span>
+    <strong>Sistema CRT</strong>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 5 — ERROR #3
+══════════════════════════════ -->
+<div class="page">
+  <div class="top-bar">
+    <span class="top-bar-brand">Diario de un Trader</span>
+    <span class="top-bar-tag">Error #3 de 3</span>
+  </div>
+
+  <div class="content">
+    <div class="error-header">
+      <div class="error-num">03</div>
+      <div class="error-header-text">
+        <span class="label">El que te mantiene en el lugar</span>
+        <h2>Buscás la solución<br>en el lugar equivocado.</h2>
+      </div>
+    </div>
+
+    <p>Comprás un curso nuevo. Seguís a un trader en redes. Probás el indicador que "todos usan". Pagás por señales. Y cada vez que algo no funciona, buscás la siguiente solución.</p>
+
+    <p style="margin-top:14px;">El problema es que <strong>ninguna de esas cosas te enseña a pensar</strong>. Te enseñan a copiar. Y cuando el mercado cambia — y siempre cambia — quedás sin herramientas.</p>
+
+    <div class="callout">
+      <p>Las señales no te enseñan nada. Los indicadores llegan tarde. Los cursos genéricos no fueron construidos para tu operativa, tu capital ni tu horario.</p>
+    </div>
+
+    <p>Después de años en esto, entendí que la única salida real es aprender a leer el mercado con tu propia lógica. No copiar — entender. Porque cuando entendés por qué el precio se mueve, podés operar cualquier instrumento, en cualquier timeframe, sin depender de nadie.</p>
+
+    <div class="consequence-box">
+      <h3>Lo que esto te cuesta</h3>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Miles de pesos/dólares en cursos que no cambiaron nada en tu operativa real.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Años de experiencia acumulando conocimiento que no se conecta en un sistema funcional.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Dependencia total de señales externas — si desaparecen, volvés a cero.</p>
+      </div>
+      <div class="consequence-item">
+        <span class="consequence-arrow">→</span>
+        <p>Nunca desarrollás criterio propio para evaluar si una entrada es buena o no.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>diariodeuntrader.lat</span>
+    <strong>Sistema CRT</strong>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 6 — LA SOLUCIÓN
+══════════════════════════════ -->
+<div class="page">
+  <div class="top-bar">
+    <span class="top-bar-brand">Diario de un Trader</span>
+    <span class="top-bar-tag">La solución</span>
+  </div>
+
+  <div class="content" style="padding-top:0;">
+    <div class="solution-header">
+      <span class="label">Lo que resuelve los 3 errores</span>
+      <h2>Un sistema. Una lógica.<br>Reglas claras.</h2>
+      <p>El Sistema CRT — Candle Range Theory — fue construido para eliminar los 3 errores de raíz. No es un indicador ni una señal. Es un proceso completo de análisis y ejecución.</p>
+    </div>
+
+    <div class="layers-grid">
+      <div class="layer-box">
+        <div class="layer-n">Capa 01</div>
+        <h3>El Rango</h3>
+        <p>Identificás la estructura del mercado y la dirección probable antes de hacer nada.</p>
+      </div>
+      <div class="layer-box">
+        <div class="layer-n">Capa 02</div>
+        <h3>La Zona</h3>
+        <p>Localizás el nivel exacto donde el precio tiene alta probabilidad de reaccionar.</p>
+      </div>
+      <div class="layer-box">
+        <div class="layer-n">Capa 03</div>
+        <h3>El Trigger</h3>
+        <p>Esperás la confirmación objetiva. Sin las 3 capas alineadas, no hay operación.</p>
+      </div>
+    </div>
+
+    <div class="vs-table">
+      <div class="vs-head">
+        <span>Criterio</span><span>Sin sistema</span><span>Sistema CRT</span>
+      </div>
+      <div class="vs-row"><div>Entrada</div><div class="vs-bad">Subjetiva</div><div class="vs-good">Trigger objetivo</div></div>
+      <div class="vs-row"><div>Stop Loss</div><div class="vs-bad">Por miedo</div><div class="vs-good">Calculado con reglas</div></div>
+      <div class="vs-row"><div>Gestión</div><div class="vs-bad">Emocional</div><div class="vs-good">SI → ENTONCES</div></div>
+      <div class="vs-row"><div>Resultado</div><div class="vs-bad">Variable</div><div class="vs-good">R:R mínimo 1:2</div></div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>diariodeuntrader.lat</span>
+    <strong>Sistema CRT</strong>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 7 — CIERRE + CTA
+══════════════════════════════ -->
+<div class="page">
+  <div class="top-bar">
+    <span class="top-bar-brand">Diario de un Trader</span>
+    <span class="top-bar-tag">Siguiente paso</span>
+  </div>
+
+  <div class="content" style="justify-content:space-between;">
+
+    <!-- Cierre emocional -->
+    <div>
+      <span class="label">Antes de cerrar esto</span>
+      <h2 style="margin-bottom:20px;">El mercado no va a<br>esperar a que estés listo.</h2>
+
+      <p>Cada día que operás sin sistema es un día que le estás regalando dinero al mercado. No porque seas malo en esto — sino porque nadie te enseñó a hacerlo bien.</p>
+
+      <p style="margin-top:14px;">Los 3 errores que acabás de leer no son teoría. Son los mismos errores que yo cometí durante años. Los mismos que veo repetirse en cada trader que trabaja conmigo al principio.</p>
+
+      <p style="margin-top:14px;">La diferencia entre quien lo supera y quien no, no es el talento. <strong>Es tener a alguien que ya recorrió ese camino trabajando con vos.</strong></p>
+
+      <div class="callout" style="margin-top:24px;">
+        <p>No te pido que confíes ciegamente. Te pido una conversación. Contame dónde estás, qué probaste, qué no funcionó. Y juntos vemos si el Sistema CRT es lo que necesitás.</p>
+      </div>
+    </div>
+
+    <!-- CTA mentoría -->
+    <div class="cta-box" style="margin-top:32px;">
+      <span style="display:block;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px;">Mentoría 1 a 1 — Sistema CRT</span>
+      <h2 style="font-size:1.45rem;">Trabajemos juntos<br>en tu operativa.</h2>
+      <p style="margin-bottom:8px;">Analizamos tus trades, corregimos en tiempo real y construimos tu proceso desde cero. Soporte directo por WhatsApp durante 30 días.</p>
+      <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-bottom:24px;">Garantía de 7 días — si no encontrás valor real, te devolvemos el dinero.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a class="cta-btn" href="https://wa.me/5493704700739?text=Hola%2C%20le%C3%AD%20el%20PDF%20y%20me%20interesa%20la%20mentor%C3%ADa%201%20a%201">
+          Quiero empezar — WhatsApp →
+        </a>
+        <button class="cta-btn" onclick="window.print()" style="background:rgba(255,255,255,0.12);color:white;border:1.5px solid rgba(255,255,255,0.25);cursor:pointer;">
+          ↓ Guardar PDF
+        </button>
+      </div>
+      <p class="cta-note">Respondemos el mismo día · Cupos limitados</p>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar">
+    <span>© 2026 Diario de un Trader · El trading implica riesgo de pérdida de capital. Contenido educativo.</span>
+    <strong>diariodeuntrader.lat</strong>
+  </div>
+</div>
+
+</body>
+</html>

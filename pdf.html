@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Gratis — Los 3 errores que destruyen cualquier cuenta de trading</title>
+  <meta name="description" content="Descargá gratis el PDF con los 3 errores que destruyen cualquier cuenta de trading. Sistema CRT — Diario de un Trader.">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://diariodeuntrader.lat/pdf">
+  <meta property="og:title"       content="PDF Gratis — Los 3 errores que destruyen tu cuenta">
+  <meta property="og:description" content="Identificá qué está fallando en tu operativa y cómo corregirlo. Descarga gratuita.">
+  <meta property="og:image"       content="https://diariodeuntrader.lat/assets/trade-01.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23003157'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='Inter,sans-serif' font-weight='800' fill='white'>D</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --bg:      #EFEFED;
+      --primary: #003157;
+      --accent:  #004371;
+      --border:  rgba(0, 49, 87, 0.10);
+      --text-60: rgba(0, 49, 87, 0.60);
+      --white:   #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav mínima */
+    nav {
+      background: rgba(239,239,237,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { font-size: 0.88rem; font-weight: 700; color: var(--primary); }
+    .nav-back  { font-size: 0.8rem; color: var(--text-60); display: flex; align-items: center; gap: 6px; }
+
+    /* Hero */
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(0,49,87,0.08);
+    }
+
+    /* Portada del PDF simulada */
+    .pdf-cover {
+      background: var(--primary);
+      padding: 40px 36px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pdf-cover-bg {
+      position: absolute;
+      right: -20px;
+      top: -20px;
+      font-size: 10rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      user-select: none;
+    }
+    .pdf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+    .pdf-cover h1 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .pdf-cover h1 span { color: rgba(255,255,255,0.5); }
+    .pdf-cover p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+
+    /* Contenido de la tarjeta */
+    .card-body { padding: 32px 36px; }
+
+    .errores {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+    .error-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .error-item:last-child { border-bottom: none; }
+    .error-n {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 20px;
+    }
+    .error-text {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.35;
+    }
+    .error-sub {
+      font-size: 0.78rem;
+      color: var(--text-60);
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    /* Botones */
+    .btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 24px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s;
+      border: none;
+      font-family: inherit;
+      letter-spacing: -0.01em;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-1px); }
+
+    .btn-download {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .btn-download:hover { background: var(--accent); transform: translateY(-1px); }
+
+    .btn-note {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-60);
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.72rem;
+      color: rgba(0,49,87,0.35);
+    }
+
+    @media (max-width: 560px) {
+      .card-body { padding: 24px 24px; }
+      .pdf-cover  { padding: 32px 24px 28px; }
+      .pdf-cover h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Diario de un Trader</span>
+  <a href="https://diariodeuntrader.lat" class="nav-back">
+    <i class="fa-solid fa-arrow-left" style="font-size:0.75rem;"></i> Volver al sitio
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="card">
+
+    <!-- Portada visual del PDF -->
+    <div class="pdf-cover">
+      <div class="pdf-cover-bg">3</div>
+      <div class="pdf-tag">
+        <i class="fa-solid fa-file-lines"></i>
+        PDF Gratuito — Sistema CRT
+      </div>
+      <h1>Los <span>3 errores</span> que destruyen cualquier cuenta de trading.</h1>
+      <p style="margin-top:12px;">Identificá qué está fallando en tu operativa — y cómo corregirlo con un sistema que ya funciona.</p>
+    </div>
+
+    <!-- Contenido -->
+    <div class="card-body">
+
+      <p style="font-size:0.8rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Lo que vas a aprender</p>
+
+      <div class="errores">
+        <div class="error-item">
+          <span class="error-n">01</span>
+          <div>
+            <div class="error-text">Operás sin un sistema definido</div>
+            <div class="error-sub">Por qué cada sesión diferente te destruye sin que te des cuenta.</div>
+          </div>
+        </div>
+        <div class="error-item">
+          <span class="error-n">02</span>
+          <div>
+            <div class="error-text">Tus emociones toman las decisiones</div>
+            <div class="error-sub">FOMO, revenge trading, mover el stop — el costo real de operar sin reglas.</div>
+          </div>
+        </div>
+        <div class="error-item">
+          <span class="error-n">03</span>
+          <div>
+            <div class="error-text">Buscás la solución en el lugar equivocado</div>
+            <div class="error-sub">Por qué los cursos, señales e indicadores no cambian nada.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="btns">
+        <a href="https://wa.me/5493704700739?text=Hola%2C%20quiero%20recibir%20el%20PDF%20gratis%20de%20los%203%20errores" class="btn btn-whatsapp">
+          <i class="fa-brands fa-whatsapp"></i>
+          Recibir por WhatsApp
+        </a>
+        <a href="lead-magnet.html" target="_blank" class="btn btn-download">
+          <i class="fa-solid fa-download"></i>
+          Descargar PDF
+        </a>
+      </div>
+
+      <p class="btn-note">Gratis · Sin spam · Respondemos el mismo día</p>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Diario de un Trader · diariodeuntrader.lat
+</footer>
+
+</body>
+</html>
