@@ -479,6 +479,41 @@
       .hero-rule { gap: 28px; flex-wrap: wrap; }
     }
 
+    /* Checklist interactivo */
+    .check-list { display: flex; flex-direction: column; }
+    .check-item { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 22px; height: 22px; border: 2px solid var(--border); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-top: 2px; }
+    .check-item.checked .check-box { background: var(--primary); border-color: var(--primary); }
+    .check-mark { opacity: 0; color: white; font-size: 0.72rem; font-weight: 800; transition: opacity 0.15s; }
+    .check-item.checked .check-mark { opacity: 1; }
+    .check-item .check-text strong { font-size: 0.88rem; color: var(--primary); display: block; margin-bottom: 4px; font-weight: 600; }
+    .check-item .check-text p { font-size: 0.82rem; color: var(--text-60); margin: 0; line-height: 1.55; }
+    .check-result { display: none; margin-top: 24px; background: var(--primary); border-radius: 14px; padding: 24px 28px; }
+    .check-result.visible { display: block; }
+    .check-result p { color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+
+    /* Costo strip */
+    .costo-strip { background: var(--primary); padding: 56px 0; }
+    .costo-quote { max-width: 620px; text-align: center; margin: 0 auto; }
+    .costo-quote p { font-size: clamp(1.05rem, 2.5vw, 1.35rem); font-weight: 500; color: rgba(255,255,255,0.6); line-height: 1.7; letter-spacing: -0.01em; }
+    .costo-quote em { color: #EFEFED; font-style: normal; font-weight: 700; }
+
+    /* Scarcity badge */
+    .scarcity { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c75000; background: rgba(199,80,0,0.08); border: 1px solid rgba(199,80,0,0.18); border-radius: 100px; padding: 4px 12px; margin-bottom: 8px; }
+    .scarcity-dot { width: 5px; height: 5px; background: #c75000; border-radius: 50%; animation: scblink 1.5s ease-in-out infinite; }
+    @keyframes scblink { 0%,100%{opacity:1}50%{opacity:0.2} }
+    .card.featured .scarcity { color: #ffb84d; background: rgba(255,184,77,0.1); border-color: rgba(255,184,77,0.2); }
+    .card.featured .scarcity-dot { background: #ffb84d; }
+
+    /* About compact */
+    .about-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-quote { font-size: 1rem; font-weight: 500; color: var(--primary); line-height: 1.75; border-left: 3px solid var(--primary); padding-left: 24px; margin-bottom: 28px; }
+    .about-stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+    .about-stat-item .n { font-size: 2rem; font-weight: 800; color: var(--primary); letter-spacing: -0.04em; line-height: 1; }
+    .about-stat-item .l { font-size: 0.74rem; color: var(--text-60); margin-top: 3px; }
+    @media (max-width: 860px) { .about-compact { grid-template-columns: 1fr; gap: 40px; } }
+
     .fade { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .fade.visible { opacity: 1; transform: translateY(0); }
   </style>
@@ -527,7 +562,7 @@
         </p>
         <div class="hero-cta">
           <a href="#productos" class="btn btn-primary">Ver programas →</a>
-          <a href="#sistema"   class="btn btn-ghost">Conocer el sistema</a>
+          <a href="https://diariodeuntrader.lat/lead-magnet" class="btn btn-ghost">PDF Gratis</a>
         </div>
         <div class="hero-rule">
           <div>
@@ -595,93 +630,59 @@
 <hr class="divider">
 
 <!-- ==============================
-     PROBLEMA
+     CHECKLIST — ¿TE IDENTIFICÁS?
 ============================== -->
 <section class="section problema">
   <div class="container">
     <div class="problema-inner">
       <div class="problema-left fade">
-        <span class="label">El problema real</span>
-        <h2>La mayoría opera sin sistema.<br />Y lo sabe.</h2>
-        <p>No perdés porque el mercado sea impredecible. Perdés porque no tenés un proceso claro que seguir cuando la presión aparece.</p>
-        <p>¿Te identificás con alguna de estas situaciones?</p>
+        <span class="label">¿Te identificás?</span>
+        <h2>Si esto te suena<br />familiar, es por algo.</h2>
+        <p>Marcá cada situación que hayas vivido. Nadie te está mirando.</p>
       </div>
       <div class="problema-right">
-        <div class="pain-item fade">
-          <span class="pain-n">01</span>
-          <div class="pain-text"><strong>Abrís operaciones por FOMO</strong><p>Ves el precio moverse y entrás tarde, sin setup, arrepintiéndote apenas confirmás la orden.</p></div>
+        <div class="check-list">
+          <div class="check-item fade" onclick="toggleCheck(this)">
+            <div class="check-box"><span class="check-mark">✓</span></div>
+            <div class="check-text"><strong>Entraste por FOMO y saliste en rojo</strong><p>Viste el precio moverse, entraste tarde sin setup y te arrepentiste apenas confirmaste la orden.</p></div>
+          </div>
+          <div class="check-item fade" onclick="toggleCheck(this)">
+            <div class="check-box"><span class="check-mark">✓</span></div>
+            <div class="check-text"><strong>Moviste el stop loss por miedo</strong><p>En lugar de respetar el plan, expandiste el SL "para darle espacio" y terminaste perdiendo el doble.</p></div>
+          </div>
+          <div class="check-item fade" onclick="toggleCheck(this)">
+            <div class="check-box"><span class="check-mark">✓</span></div>
+            <div class="check-text"><strong>Cada sesión es distinta, nada es consistente</strong><p>Un día usás indicadores, otro day trading, otro scalping. No hay proceso. No hay resultados reales.</p></div>
+          </div>
+          <div class="check-item fade" onclick="toggleCheck(this)">
+            <div class="check-box"><span class="check-mark">✓</span></div>
+            <div class="check-text"><strong>Hiciste trading de venganza</strong><p>Después de una pérdida, redoblaste la apuesta para recuperar. Y terminaste igual o peor.</p></div>
+          </div>
+          <div class="check-item fade" onclick="toggleCheck(this)">
+            <div class="check-box"><span class="check-mark">✓</span></div>
+            <div class="check-text"><strong>Compraste cursos y seguís igual</strong><p>Más indicadores, más conceptos, menos claridad. Nadie te enseñó a pensar — solo a copiar señales.</p></div>
+          </div>
         </div>
-        <div class="pain-item fade">
-          <span class="pain-n">02</span>
-          <div class="pain-text"><strong>Movés el stop por miedo</strong><p>En lugar de respetar el plan, expandís el SL "para darle espacio" y terminás perdiendo el doble.</p></div>
-        </div>
-        <div class="pain-item fade">
-          <span class="pain-n">03</span>
-          <div class="pain-text"><strong>Cada sesión es diferente</strong><p>Un día usás indicadores, otro day trading, otro scalping. No hay consistencia. No hay proceso.</p></div>
-        </div>
-        <div class="pain-item fade">
-          <span class="pain-n">04</span>
-          <div class="pain-text"><strong>Trading de venganza</strong><p>Después de una pérdida, redobrás la apuesta para recuperar. Y terminás en el mismo lugar o peor.</p></div>
-        </div>
-        <div class="pain-item fade">
-          <span class="pain-n">05</span>
-          <div class="pain-text"><strong>Compraste cursos y seguís igual</strong><p>Más indicadores, más conceptos, menos claridad. Nadie te enseñó a pensar — solo a copiar.</p></div>
+        <div class="check-result" id="check-result">
+          <p>Si marcaste 3 o más, no es mala suerte ni falta de talento. Operás con emociones, no con un sistema. <strong style="color:#fff;">Eso tiene solución.</strong></p>
+          <a href="#productos" class="btn" style="background:#fff;color:var(--primary);display:inline-flex;padding:12px 24px;border-radius:8px;font-weight:700;font-size:0.88rem;">Ver cómo cambiarlo →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- ==============================
-     ABOUT
-============================== -->
-<section class="section about" id="nosotros">
+<!-- COSTO STRIP -->
+<section class="costo-strip">
   <div class="container">
-    <div class="about-inner">
-      <div class="about-left fade">
-        <span class="label">Quiénes somos</span>
-        <h2>Dos traders.<br />Un sistema propio.</h2>
-        <p class="about-lead">Guillermo y Mauricio. Más de 3 años operando, estudiando y documentando cada movimiento del mercado.</p>
-        <div class="about-stats">
-          <div class="about-stat">
-            <span class="about-stat-n">+400</span>
-            <span class="about-stat-l">setups documentados y analizados</span>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat-n">1:2.3</span>
-            <span class="about-stat-l">R:R promedio registrado en operativa real</span>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat-n">3</span>
-            <span class="about-stat-l">años refinando el sistema hasta tener consistencia</span>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat-n">3</span>
-            <span class="about-stat-l">mercados validados: Forex, índices y crypto</span>
-          </div>
-        </div>
-        <div class="about-actions">
-          <a href="https://instagram.com/diariodeuntraderg" class="btn btn-ghost">Instagram →</a>
-          <a href="#productos" class="btn btn-primary">Ver programas →</a>
-        </div>
-      </div>
-      <div class="about-right fade">
-        <p>Empezamos como la mayoría: siguiendo señales de otros, comprando cursos prometedores, buscando el indicador mágico que nunca llegó. Perdimos plata. Mucha. Y lo más valioso que teníamos: tiempo.</p>
-        <p>Después de más de 3 años operando en los mercados, estudiando precio, fallando y volviendo a empezar, entendimos algo que nadie nos había enseñado: <strong>el mercado tiene una lógica. Y esa lógica se puede aprender.</strong></p>
-        <p>Lo que descubrimos en ese proceso cambió todo: el precio no se mueve de forma aleatoria. Se mueve para buscar liquidez — los stops de los traders minoristas — antes de ir a donde realmente va. Ese patrón se repite. En cualquier instrumento, en cualquier timeframe. Y es completamente predecible cuando sabés leerlo.</p>
-        <p>Con eso construimos el sistema CRT — Candle Range Theory. Sin mentores, sin comunidades de pago, sin copiar a nadie. <strong>Probando hipótesis en gráficos reales, documentando más de 400 operaciones, refinando hasta tener algo que funciona con consistencia.</strong></p>
-        <p>Hoy creamos Diario de un Trader con un objetivo claro: enseñarte a pensar como un trader, no a seguir como uno.</p>
-        <div class="about-highlight">
-          <p>Eso es lo que nos hubiera cambiado todo cuando empezamos.</p>
-        </div>
-      </div>
+    <div class="costo-quote fade">
+      <p>"La pregunta no es cuánto cuesta <em>aprender</em> un sistema.<br/>Es cuánto cuesta seguir <em>sin uno</em>."</p>
     </div>
   </div>
 </section>
 
 <hr class="divider">
+
 
 <!-- ==============================
      SISTEMA — TEASER
@@ -750,79 +751,13 @@
 </section>
 
 <!-- ==============================
-     VIDEO — EL CRT EN ACCIÓN
-============================== -->
-<section class="video-section">
-  <div class="container">
-    <div class="video-intro fade">
-      <span class="label">El sistema en acción</span>
-      <h2>Así marcamos un CRT antes de ejecutar.</h2>
-      <p>No explicaciones teóricas. El proceso real, en tiempo real: cómo identificamos el rango, la zona y el trigger antes de abrir una sola orden.</p>
-    </div>
-    <div class="video-wrapper fade">
-      <video src="assets/crt-demo.mp4" controls muted playsinline preload="metadata"></video>
-      <div class="video-caption">GBP/USD · Sesión Londres · Sistema CRT — Marcación en tiempo real</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ==============================
-     SETUPS REALES
-============================== -->
-<section class="section setups">
-  <div class="container">
-    <div class="setups-intro fade">
-      <span class="label">Setups reales</span>
-      <h2>Operaciones de hoy.<br />Proceso real.</h2>
-      <p style="margin-top:14px;">GBP/USD esta mañana. El sistema aplicado tal cual — en TradingView y en MT5. Sin edición, sin cherry-picking.</p>
-    </div>
-    <div class="setups-grid">
-      <div class="setup-img-card fade">
-        <img src="assets/trade-01.png" alt="Setup CRT — GBP/USD M5 — Trade 01" loading="lazy" />
-        <div class="setup-img-meta">
-          <div>
-            <div class="setup-img-pair">GBP/USD · M5 · TradingView</div>
-            <div class="setup-img-detail">08 Mayo 2026 · Sesión Londres</div>
-          </div>
-          <div class="setup-img-tag">Zona CRT</div>
-        </div>
-      </div>
-      <div class="setup-img-card fade">
-        <img src="assets/trade-02.png" alt="Setup CRT — GBP/USD M5 — Trade 02" loading="lazy" />
-        <div class="setup-img-meta">
-          <div>
-            <div class="setup-img-pair">GBP/USD · M5 · TradingView</div>
-            <div class="setup-img-detail">08 Mayo 2026 · Sesión Londres</div>
-          </div>
-          <div class="setup-img-tag">Model #01</div>
-        </div>
-      </div>
-      <div class="setup-img-card fade">
-        <img src="assets/mt5-trade.jpeg" alt="Setup CRT — GBP/USD M15 — MT5" loading="lazy" />
-        <div class="setup-img-meta">
-          <div>
-            <div class="setup-img-pair">GBP/USD · M15 · MT5</div>
-            <div class="setup-img-detail">07 Mayo 2026 · Ejecución real</div>
-          </div>
-          <div class="setup-img-tag">Entrada ejecutada</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ==============================
-     TESTIMONIOS — WHATSAPP REALES
+     TESTIMONIOS
 ============================== -->
 <section class="section testimonios" id="testimonios">
   <div class="container">
     <div class="testimonios-intro fade">
       <span class="label">Lo que dicen los alumnos</span>
-      <h2>Mensajes de nuestros alumnos.</h2>
+      <h2>Resultados reales.<br />Mensajes reales.</h2>
       <p style="margin-top:14px;">No inventamos frases. Estas son conversaciones reales de WhatsApp con alumnos que tomaron el sistema.</p>
     </div>
     <div class="testi-grid">
@@ -855,24 +790,32 @@
   </div>
 </section>
 
+<hr class="divider">
+
 <!-- ==============================
-     LEAD MAGNET
+     NOSOTROS — COMPACTO
 ============================== -->
-<section class="lead-magnet" id="leadmagnet">
+<section class="section about" id="nosotros">
   <div class="container">
-    <div class="lm-inner">
-      <div class="lm-left fade">
-        <span class="label">Gratis</span>
-        <div class="lm-pdf-tag">
-          📄 PDF — Los 3 errores que destruyen cualquier cuenta de trading
+    <div class="about-compact">
+      <div class="fade">
+        <span class="label">Quiénes somos</span>
+        <h2>Dos traders.<br />Un sistema propio.</h2>
+        <p class="about-quote">Empezamos como la mayoría: siguiendo señales, comprando cursos, buscando el indicador mágico. Perdimos plata y tiempo. Volvimos desde la lógica del precio y construimos el sistema CRT — sin mentores, sin copiar a nadie.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://instagram.com/diariodeuntraderg" class="btn btn-ghost">Instagram →</a>
+          <a href="#productos" class="btn btn-primary">Ver programas →</a>
         </div>
-        <h2>Empezá por acá antes de gastar un peso.</h2>
-        <p>El material con el que arranca todo. Los 3 errores más comunes que cometen los traders y que les hacen perder capital sin darse cuenta. Sin costo, sin spam.</p>
       </div>
-      <div class="lm-right fade">
-        <div class="lm-form">
-          <a href="https://diariodeuntrader.lat/lead-magnet" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:16px 24px;">Quiero el PDF gratis →</a>
-          <p class="lm-note">Acceso inmediato. Sin registro, sin spam.</p>
+      <div class="fade">
+        <div class="about-stats-row">
+          <div class="about-stat-item"><div class="n">+400</div><div class="l">setups documentados</div></div>
+          <div class="about-stat-item"><div class="n">1:2.3</div><div class="l">R:R promedio real</div></div>
+          <div class="about-stat-item"><div class="n">3 años</div><div class="l">refinando el sistema</div></div>
+          <div class="about-stat-item"><div class="n">3</div><div class="l">mercados validados</div></div>
+        </div>
+        <div style="padding:24px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
+          <p style="font-size:0.88rem;color:var(--text-60);line-height:1.7;">Hoy enseñamos lo que nos hubiera cambiado todo cuando empezamos: <strong style="color:var(--primary);">a pensar como un trader, no a seguir como uno.</strong></p>
         </div>
       </div>
     </div>
@@ -894,56 +837,7 @@
 
     <div class="cards fade">
 
-      <!-- Curso -->
-      <div class="card">
-        <div class="card-label">Autodidacta</div>
-        <h3>Curso Sistema CRT</h3>
-        <p>El sistema completo explicado paso a paso. Aprendé a tu ritmo, desde cualquier lugar.</p>
-        <div class="card-price">$97</div>
-        <div class="card-note">Pago único · Acceso de por vida</div>
-        <button class="card-toggle" onclick="toggleDetails(this)">
-          Ver qué incluye <span class="toggle-arrow">↓</span>
-        </button>
-        <div class="card-details">
-          <hr class="card-sep">
-          <ul>
-            <li><span class="card-check">✓</span> 6 módulos de video pregrabado</li>
-            <li><span class="card-check">✓</span> Las 3 capas del CRT explicadas en profundidad</li>
-            <li><span class="card-check">✓</span> Cómo identificar niveles institucionales en TradingView</li>
-            <li><span class="card-check">✓</span> El trigger de entrada: la señal exacta para operar</li>
-            <li><span class="card-check">✓</span> Gestión del riesgo: SL, TP y ratio mínimo</li>
-            <li><span class="card-check">✓</span> Setups reales analizados de principio a fin</li>
-          </ul>
-        </div>
-        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Curso+Sistema+CRT" class="btn btn-ghost">Quiero el curso →</a>
-      </div>
-
-      <!-- Bootcamp -->
-      <div class="card featured">
-        <div class="card-badge">Más elegido</div>
-        <div class="card-label">Grupal</div>
-        <h3>Bootcamp CRT</h3>
-        <p>Un mes de trabajo en grupo con Guillermo y Mauri. Aprendés el sistema y lo aplicás en vivo.</p>
-        <div class="card-price">$197<span style="font-size:1rem;font-weight:500;letter-spacing:0">/persona</span></div>
-        <div class="card-note">Grupos de 6 a 8 personas · 4 sesiones Zoom</div>
-        <button class="card-toggle" onclick="toggleDetails(this)">
-          Ver qué incluye <span class="toggle-arrow">↓</span>
-        </button>
-        <div class="card-details">
-          <hr class="card-sep">
-          <ul>
-            <li><span class="card-check">✓</span> 4 sesiones Zoom en vivo (Guillermo + Mauri)</li>
-            <li><span class="card-check">✓</span> Grupo reducido de 6 a 8 personas</li>
-            <li><span class="card-check">✓</span> Revisión grupal de trades en tiempo real</li>
-            <li><span class="card-check">✓</span> Canal privado de Telegram de la cohorte</li>
-            <li><span class="card-check">✓</span> Grabaciones de todas las sesiones</li>
-            <li><span class="card-check">✓</span> 1 mes de Club CRT incluido</li>
-          </ul>
-        </div>
-        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Bootcamp+CRT" class="btn btn-ghost">Quiero el Bootcamp →</a>
-      </div>
-
-      <!-- Mentoría -->
+      <!-- Mentoría — primero para anclar precio -->
       <div class="card">
         <div class="card-label">Premium</div>
         <h3>Mentoría 1 a 1</h3>
@@ -966,6 +860,56 @@
           </ul>
         </div>
         <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+la+Mentor%C3%ADa+1+a+1" class="btn btn-ghost">Quiero la Mentoría →</a>
+      </div>
+
+      <!-- Bootcamp — featured, centro -->
+      <div class="card featured">
+        <div class="card-badge">Más elegido</div>
+        <div class="scarcity"><span class="scarcity-dot"></span> Cupos limitados por cohorte</div>
+        <div class="card-label">Grupal</div>
+        <h3>Bootcamp CRT</h3>
+        <p>Un mes de trabajo en grupo con Guillermo y Mauri. Aprendés el sistema y lo aplicás en vivo.</p>
+        <div class="card-price">$197<span style="font-size:1rem;font-weight:500;letter-spacing:0">/persona</span></div>
+        <div class="card-note">Grupos de 6 a 8 personas · 4 sesiones Zoom</div>
+        <button class="card-toggle" onclick="toggleDetails(this)">
+          Ver qué incluye <span class="toggle-arrow">↓</span>
+        </button>
+        <div class="card-details">
+          <hr class="card-sep">
+          <ul>
+            <li><span class="card-check">✓</span> 4 sesiones Zoom en vivo (Guillermo + Mauri)</li>
+            <li><span class="card-check">✓</span> Grupo reducido de 6 a 8 personas</li>
+            <li><span class="card-check">✓</span> Revisión grupal de trades en tiempo real</li>
+            <li><span class="card-check">✓</span> Canal privado de Telegram de la cohorte</li>
+            <li><span class="card-check">✓</span> Grabaciones de todas las sesiones</li>
+            <li><span class="card-check">✓</span> 1 mes de Club CRT incluido</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Bootcamp+CRT" class="btn btn-ghost">Quiero el Bootcamp →</a>
+      </div>
+
+      <!-- Curso — entrada fácil -->
+      <div class="card">
+        <div class="card-label">Autodidacta</div>
+        <h3>Curso Sistema CRT</h3>
+        <p>El sistema completo explicado paso a paso. Aprendé a tu ritmo, desde cualquier lugar.</p>
+        <div class="card-price">$97</div>
+        <div class="card-note">Pago único · Acceso de por vida</div>
+        <button class="card-toggle" onclick="toggleDetails(this)">
+          Ver qué incluye <span class="toggle-arrow">↓</span>
+        </button>
+        <div class="card-details">
+          <hr class="card-sep">
+          <ul>
+            <li><span class="card-check">✓</span> 6 módulos de video pregrabado</li>
+            <li><span class="card-check">✓</span> Las 3 capas del CRT explicadas en profundidad</li>
+            <li><span class="card-check">✓</span> Cómo identificar niveles institucionales en TradingView</li>
+            <li><span class="card-check">✓</span> El trigger de entrada: la señal exacta para operar</li>
+            <li><span class="card-check">✓</span> Gestión del riesgo: SL, TP y ratio mínimo</li>
+            <li><span class="card-check">✓</span> Setups reales analizados de principio a fin</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Curso+Sistema+CRT" class="btn btn-ghost">Quiero el curso →</a>
       </div>
 
     </div>
@@ -1042,11 +986,11 @@
 <section class="final-cta">
   <div class="container">
     <span class="label">Empezá ahora</span>
-    <h2>¿Seguís operando<br />sin proceso?</h2>
-    <p>Cada semana sin un sistema claro es una semana de pérdidas evitables. No necesariamente en dinero — en tiempo, energía y capital emocional.</p>
+    <h2>Cada semana sin sistema<br />es una semana regalada.</h2>
+    <p>No en teoría — en trades que podrían haber salido bien con un proceso claro. El mercado no para. La pregunta es si vas a seguir improvisando.</p>
     <div class="cta-row">
       <a href="#productos" class="btn btn-primary">Ver todos los programas →</a>
-      <a href="https://wa.me/5493704700739?text=Hola%2C%20quiero%20información%20sobre%20el%20sistema%20CRT" class="btn btn-ghost">Escribinos por WhatsApp</a>
+      <a href="https://wa.me/5493704700739?text=Hola%2C+quiero+informaci%C3%B3n+sobre+el+sistema+CRT" class="btn btn-ghost">Escribinos por WhatsApp</a>
     </div>
     <div class="final-guarantee">🛡️ Garantía de 7 días — sin preguntas.</div>
   </div>
@@ -1077,6 +1021,14 @@
     const details = btn.nextElementSibling;
     btn.classList.toggle('open');
     details.classList.toggle('open');
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    const count = document.querySelectorAll('.check-item.checked').length;
+    const result = document.getElementById('check-result');
+    if (count >= 3) result.classList.add('visible');
+    else result.classList.remove('visible');
   }
 
   function toggleFaq(el) {
