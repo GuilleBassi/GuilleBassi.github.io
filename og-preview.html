@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>OG Image Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background: #003157;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 1200px;
+      height: 630px;
+      background: #003157;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 72px 88px;
+      overflow: hidden;
+    }
+
+    /* Fondo decorativo — grid sutil */
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Círculo decorativo */
+    .circle {
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .circle-2 {
+      position: absolute;
+      right: -160px;
+      top: -160px;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Línea accent */
+    .accent-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, transparent, #EFEFED 30%, #EFEFED 70%, transparent);
+      opacity: 0.25;
+    }
+
+    /* Contenido */
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 32px;
+    }
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      background: #EFEFED;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    h1 {
+      font-size: 72px;
+      font-weight: 800;
+      color: #EFEFED;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      max-width: 680px;
+    }
+
+    .sub {
+      font-size: 22px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: -0.01em;
+      max-width: 540px;
+      line-height: 1.5;
+    }
+
+    /* Logo abajo */
+    .footer {
+      position: absolute;
+      bottom: 56px;
+      left: 88px;
+      right: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #EFEFED;
+      letter-spacing: -0.03em;
+    }
+    .logo-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: -0.01em;
+    }
+    .url {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.02em;
+    }
+
+    /* Instrucción — no aparece en screenshot si usás full page */
+    .instruccion {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid"></div>
+    <div class="circle"></div>
+    <div class="circle-2"></div>
+    <div class="accent-line"></div>
+
+    <div class="content">
+      <div class="tag">
+        <span class="tag-dot"></span>
+        Sistema CRT
+      </div>
+      <h1>Operá con un sistema, no con emociones.</h1>
+      <p class="sub">Trading en forex, índices y cripto con un método simple y probado.</p>
+    </div>
+
+    <div class="footer">
+      <div class="logo">
+        <div class="logo-mark">D</div>
+        <div class="logo-name">Diario de un Trader</div>
+      </div>
+      <div class="url">diariodeuntrader.lat</div>
+    </div>
+  </div>
+
+</body>
+</html>
