@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diario de un Trader — Sistema CRT</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23003157'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='Inter,sans-serif' font-weight='800' fill='white'>D</text></svg>">
+
+  <!-- SEO -->
+  <meta name="description" content="Aprendé el Sistema CRT de trading. No señales, no indicadores. Un método de 3 capas basado en la lógica real del mercado. Guillermo y Mauricio — Diario de un Trader, Argentina.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (WhatsApp, Instagram, Facebook) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://diariodeuntrader.netlify.app">
+  <meta property="og:title"       content="Diario de un Trader — Sistema CRT">
+  <meta property="og:description" content="La plata que perdiste no fue mala suerte. Fue falta de sistema. Aprendé a operar con lógica real.">
+  <meta property="og:image"       content="https://diariodeuntrader.netlify.app/assets/trade-01.png">
+  <meta property="og:locale"      content="es_AR">
+
+  <!-- Twitter/X -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Diario de un Trader — Sistema CRT">
+  <meta name="twitter:description" content="La plata que perdiste no fue mala suerte. Fue falta de sistema.">
+  <meta name="twitter:image"       content="https://diariodeuntrader.netlify.app/assets/trade-01.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    :root {
+      --bg:        #EFEFED;
+      --primary:   #003157;
+      --accent:    #004371;
+      --accent-40: rgba(0, 67, 113, 0.40);
+      --accent-10: rgba(0, 67, 113, 0.08);
+      --text:      #003157;
+      --text-60:   rgba(0, 49, 87, 0.60);
+      --text-40:   rgba(0, 49, 87, 0.40);
+      --border:    rgba(0, 49, 87, 0.10);
+      --white:     #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+    .section    { padding: 100px 0; }
+
+    h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; }
+    h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.3; }
+    p  { color: var(--text-60); line-height: 1.75; }
+
+    .label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      border: none;
+      font-family: inherit;
+      letter-spacing: -0.01em;
+    }
+    .btn-primary { background: var(--primary); color: var(--white); }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--primary); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: rgba(0,49,87,0.4); background: rgba(0,49,87,0.04); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(239,239,237,0.90);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 32px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 0.92rem; font-weight: 700; color: var(--primary); }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--text-60); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--primary); border-radius: 2px; }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 64px 0 0 0;
+      background: var(--bg); z-index: 99;
+      flex-direction: column; padding: 24px 32px;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a { font-size: 1rem; font-weight: 500; padding: 16px 0; border-bottom: 1px solid var(--border); color: var(--text); }
+    .mobile-menu .btn { margin-top: 20px; justify-content: center; }
+
+    @media (max-width: 860px) {
+      .nav-links, .nav-actions { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 64px; background: var(--bg); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 80px 0; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.06em; margin-bottom: 24px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 2.5s infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    .hero h1 { color: var(--primary); margin-bottom: 24px; }
+    .hero-sub { font-size: 1.05rem; color: var(--text-60); max-width: 480px; margin-bottom: 40px; line-height: 1.72; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-rule { border-top: 1px solid var(--border); padding-top: 32px; display: flex; gap: 48px; }
+    .hero-stat-n { font-size: 1.6rem; font-weight: 700; color: var(--primary); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .hero-stat-l { font-size: 0.76rem; color: var(--text-60); }
+
+    /* Hero visual */
+    .hero-right { display: flex; flex-direction: column; gap: 12px; }
+    .setup-card { background: var(--primary); border-radius: 18px; padding: 28px; color: var(--white); }
+    .setup-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+    .setup-card-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .setup-card-pair { font-size: 1.1rem; font-weight: 700; }
+    .setup-badge { font-size: 0.7rem; font-weight: 700; padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); letter-spacing: 0.06em; }
+
+    .mini-chart { display: flex; align-items: flex-end; gap: 5px; height: 72px; margin-bottom: 20px; padding: 0 2px; }
+    .mc { display: flex; flex-direction: column; align-items: center; gap: 1px; flex: 1; }
+    .mc-wick { width: 1px; background: rgba(255,255,255,0.2); }
+    .mc-body { width: 100%; border-radius: 2px; min-height: 4px; }
+    .mc.bull .mc-body { background: rgba(255,255,255,0.85); }
+    .mc.bear .mc-body { background: rgba(255,255,255,0.25); }
+    .mc.signal .mc-body { background: #7FAACC; box-shadow: 0 0 8px rgba(127,170,204,0.5); }
+    .chart-line { position: relative; height: 1px; background: rgba(255,255,255,0.15); margin-bottom: 8px; }
+    .chart-line-label { position: absolute; right: 0; top: -9px; font-size: 0.62rem; font-weight: 600; color: rgba(255,255,255,0.4); }
+
+    .setup-layers { display: flex; flex-direction: column; gap: 8px; }
+    .setup-layer { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; border-radius: 8px; background: rgba(255,255,255,0.06); }
+    .setup-layer-name { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.75); }
+    .setup-layer-status { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 100px; }
+    .status-ok { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+
+    .result-card { background: var(--white); border-radius: 14px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .result-label { font-size: 0.75rem; font-weight: 600; color: var(--text-60); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+    .result-value { font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: -0.03em; line-height: 1; }
+    .result-note { font-size: 0.72rem; color: var(--text-60); margin-top: 2px; }
+    .rr-value { font-size: 2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; }
+    .rr-label { font-size: 0.7rem; color: var(--text-60); }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; padding: 56px 0; }
+      .hero-right { display: none; }
+    }
+
+    /* ==============================
+       PROBLEMA
+    ============================== */
+    .problema { background: var(--white); }
+    .problema-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .problema-left h2 { margin-bottom: 20px; }
+    .problema-left p { font-size: 1rem; margin-bottom: 16px; }
+    .pain-item { display: flex; gap: 18px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .pain-item:first-child { border-top: 1px solid var(--border); }
+    .pain-n { font-size: 0.7rem; font-weight: 700; color: var(--text-40); letter-spacing: 0.08em; margin-top: 3px; flex-shrink: 0; width: 20px; }
+    .pain-text strong { display: block; font-size: 0.95rem; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+    .pain-text p { font-size: 0.875rem; }
+    @media (max-width: 860px) { .problema-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ==============================
+       ABOUT
+    ============================== */
+    .about { background: var(--bg); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about-left { position: sticky; top: 96px; }
+    .about-left h2 { margin-bottom: 20px; }
+    .about-lead { font-size: 1rem; color: var(--text-60); margin-bottom: 32px; line-height: 1.75; }
+    .about-stats { display: flex; flex-direction: column; gap: 2px; margin-bottom: 28px; }
+    .about-stat { background: var(--white); border: 1px solid var(--border); padding: 16px 20px; border-radius: 10px; display: flex; align-items: baseline; gap: 10px; }
+    .about-stat-n { font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: -0.03em; line-height: 1; }
+    .about-stat-l { font-size: 0.82rem; color: var(--text-60); }
+    .about-actions { display: flex; flex-direction: column; gap: 10px; }
+    .about-right p { font-size: 0.95rem; margin-bottom: 18px; color: var(--text-60); }
+    .about-right p:last-child { margin-bottom: 0; }
+    .about-right strong { color: var(--primary); font-weight: 600; }
+    .about-highlight { background: var(--primary); border-radius: 14px; padding: 28px; margin-top: 32px; }
+    .about-highlight p { color: rgba(255,255,255,0.75); font-size: 0.95rem; font-style: italic; line-height: 1.7; }
+    .about-highlight p::before { content: '"'; }
+    .about-highlight p::after { content: '"'; }
+    @media (max-width: 860px) { .about-inner { grid-template-columns: 1fr; gap: 40px; } .about-left { position: static; } }
+
+    /* ==============================
+       SISTEMA (teaser)
+    ============================== */
+    .sistema { background: var(--white); }
+    .sistema-intro { max-width: 640px; margin-bottom: 48px; }
+    .sistema-intro h2 { margin-bottom: 14px; }
+    .layers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .layer { background: var(--white); padding: 32px 24px; transition: background 0.2s; }
+    .layer:hover { background: rgba(0,67,113,0.03); }
+    .layer-n { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .layer h3 { margin-bottom: 8px; font-size: 1rem; }
+    .layer p { font-size: 0.875rem; }
+    .layer-q { margin-top: 10px; font-size: 0.82rem; color: var(--text-60); }
+    .layer-q strong { color: var(--primary); font-weight: 600; }
+    .layer-locked { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--text-40); }
+    @media (max-width: 860px) { .layers { grid-template-columns: 1fr; } }
+
+    /* ==============================
+       COMPARISON
+    ============================== */
+    .comparison { background: var(--bg); }
+    .comparison-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .comparison-left h2 { margin-bottom: 16px; }
+    .comparison-left p { font-size: 0.95rem; margin-bottom: 14px; }
+    .comp-table { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .comp-head { display: grid; grid-template-columns: 1.4fr 1fr 1fr; background: var(--primary); padding: 13px 22px; }
+    .comp-head span { font-size: 0.74rem; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; }
+    .comp-head span:last-child { color: rgba(255,255,255,0.95); }
+    .comp-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; padding: 13px 22px; border-top: 1px solid var(--border); font-size: 0.85rem; align-items: center; background: var(--white); }
+    .comp-row:nth-child(even) { background: var(--bg); }
+    .comp-bad { color: var(--text-40); }
+    .comp-good { color: var(--accent); font-weight: 600; }
+    @media (max-width: 860px) { .comparison-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ==============================
+       VIDEO
+    ============================== */
+    .video-section { background: var(--primary); padding: 100px 0; }
+    .video-intro { max-width: 560px; margin-bottom: 48px; }
+    .video-intro .label { color: rgba(255,255,255,0.45); }
+    .video-intro h2 { color: var(--white); margin-bottom: 14px; }
+    .video-intro p { color: rgba(255,255,255,0.6); font-size: 1rem; }
+    .video-wrapper { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000; max-width: 900px; }
+    .video-wrapper video { width: 100%; display: block; max-height: 520px; object-fit: contain; background: #000; }
+    .video-caption { padding: 14px 20px; background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.76rem; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+
+    /* ==============================
+       SETUPS REALES
+    ============================== */
+    .setups { background: var(--bg); }
+    .setups-intro { max-width: 560px; margin-bottom: 56px; }
+    .setups-intro h2 { margin-bottom: 14px; }
+    .setups-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .setup-img-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .setup-img-card img { width: 100%; display: block; border-bottom: 1px solid var(--border); object-fit: cover; }
+    .setup-img-meta { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .setup-img-pair { font-size: 0.84rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
+    .setup-img-detail { font-size: 0.74rem; color: var(--text-60); }
+    .setup-img-tag { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-10); padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+    @media (max-width: 860px) { .setups-grid { grid-template-columns: 1fr; } }
+
+    /* ==============================
+       PRODUCTOS
+    ============================== */
+    .productos { background: var(--white); }
+    .productos-intro { max-width: 560px; margin-bottom: 56px; }
+    .productos-intro h2 { margin-bottom: 14px; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 12px; }
+    .card { background: var(--white); padding: 36px 28px; display: flex; flex-direction: column; position: relative; }
+    .card.featured { background: var(--primary); }
+    .card.featured h3, .card.featured .card-price { color: var(--white); }
+    .card.featured .card-label { color: rgba(255,255,255,0.5); }
+    .card.featured > p, .card.featured .card-note, .card.featured li { color: rgba(255,255,255,0.6); }
+    .card.featured .card-check { color: rgba(255,255,255,0.85); }
+    .card.featured li { border-color: rgba(255,255,255,0.1); }
+    .card.featured .card-sep { border-color: rgba(255,255,255,0.15); }
+    .card.featured .btn-ghost { border-color: rgba(255,255,255,0.25); color: var(--white); }
+    .card.featured .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+    .card-badge { position: absolute; top: 20px; right: 20px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg); background: rgba(255,255,255,0.18); padding: 4px 10px; border-radius: 100px; }
+    .card-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .card > p { font-size: 0.86rem; margin-bottom: 24px; }
+    .card-price { font-size: 2.6rem; font-weight: 700; letter-spacing: -0.05em; color: var(--primary); line-height: 1; margin-bottom: 4px; }
+    .card-soon { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,49,87,0.07); border-radius: 100px; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); margin-bottom: 6px; }
+    .card.featured .card-soon { background: rgba(255,255,255,0.15); color: var(--white); }
+    .card-note { font-size: 0.76rem; color: var(--text-60); margin-bottom: 24px; }
+    .card-sep { border: none; border-top: 1px solid var(--border); margin-bottom: 22px; }
+    .card ul { flex: 1; margin-bottom: 28px; }
+    .card li { display: flex; gap: 10px; font-size: 0.86rem; color: var(--text-60); padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .card li:last-child { border-bottom: none; }
+    .card-check { color: var(--accent); flex-shrink: 0; font-size: 0.8rem; margin-top: 2px; }
+    .card .btn { width: 100%; justify-content: center; margin-top: auto; }
+
+    /* Guarantee strip */
+    .guarantee-strip {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      color: var(--text-60);
+      margin-bottom: 12px;
+    }
+    .guarantee-strip .gs-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .guarantee-strip strong { color: var(--primary); }
+
+    .club-teaser { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .club-teaser .label { margin-bottom: 6px; }
+    .club-teaser h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .club-teaser p { font-size: 0.85rem; }
+    .club-price { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.04em; color: var(--primary); white-space: nowrap; }
+    .club-price span { font-size: 0.9rem; font-weight: 400; color: var(--text-60); }
+    @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } .club-teaser { flex-direction: column; align-items: flex-start; } }
+
+    /* ==============================
+       TESTIMONIOS — WHATSAPP REALES
+    ============================== */
+    .testimonios { background: var(--bg); }
+    .testimonios-intro { max-width: 560px; margin-bottom: 56px; }
+    .testimonios-intro h2 { margin-bottom: 14px; }
+    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 820px; }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .testi-img-wrap {
+      position: relative;
+      background: #e5ddd5;
+      overflow: hidden;
+    }
+    .testi-img-wrap img {
+      width: 100%;
+      height: 460px;
+      display: block;
+      object-fit: cover;
+      object-position: top;
+    }
+    .testi-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .testi-person { font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+    .testi-location { font-size: 0.76rem; color: var(--text-60); }
+    .testi-tag { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-10); padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+    .testi-disclaimer { margin-top: 20px; font-size: 0.76rem; color: var(--text-40); }
+    @media (max-width: 680px) {
+      .testi-grid { grid-template-columns: 1fr; }
+      .testi-img-wrap img { height: 320px; }
+      .testi-footer { flex-wrap: wrap; }
+    }
+
+    /* ==============================
+       LEAD MAGNET
+    ============================== */
+    .lead-magnet { background: var(--primary); padding: 80px 0; }
+    .lm-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .lm-left .label { color: rgba(255,255,255,0.45); }
+    .lm-left h2 { color: var(--white); margin-bottom: 16px; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+    .lm-left p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+    .lm-pdf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin-bottom: 24px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+    }
+    .lm-form { display: flex; flex-direction: column; gap: 12px; }
+    .lm-form input[type="email"] {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .lm-form input[type="email"]::placeholder { color: rgba(255,255,255,0.4); }
+    .lm-form input[type="email"]:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.12); }
+    .lm-form .btn-primary { background: var(--white); color: var(--primary); width: 100%; justify-content: center; padding: 14px; }
+    .lm-form .btn-primary:hover { background: var(--bg); }
+    .lm-note { font-size: 0.76rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
+    @media (max-width: 860px) { .lm-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ==============================
+       FAQ
+    ============================== */
+    .faq { background: var(--white); }
+    .faq-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .faq-left { position: sticky; top: 96px; }
+    .faq-left h2 { margin-bottom: 16px; }
+    .faq-left p { font-size: 0.95rem; margin-bottom: 28px; }
+    .faq-item { border-top: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+    .faq-q { padding: 20px 0; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; user-select: none; color: var(--primary); }
+    .faq-icon { font-size: 1.2rem; font-weight: 300; color: var(--text-40); flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s; font-size: 0.875rem; color: var(--text-60); line-height: 1.75; }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 20px; }
+    @media (max-width: 860px) { .faq-inner { grid-template-columns: 1fr; gap: 40px; } .faq-left { position: static; } }
+
+    /* ==============================
+       FINAL CTA
+    ============================== */
+    .final-cta { background: var(--bg); padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
+    .final-cta h2 { margin-bottom: 20px; max-width: 580px; margin-left: auto; margin-right: auto; }
+    .final-cta > .container > p { color: var(--text-60); max-width: 480px; margin: 0 auto 40px; font-size: 1rem; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .final-guarantee { font-size: 0.8rem; color: var(--text-40); }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    footer { background: var(--primary); padding: 40px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-size: 0.88rem; font-weight: 700; color: rgba(255,255,255,0.9); }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+    .footer-copy { font-size: 0.76rem; color: rgba(255,255,255,0.4); }
+    .footer-legal { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.72rem; color: rgba(255,255,255,0.3); line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .section { padding: 72px 0; }
+      .container { padding: 0 20px; }
+      .hero-rule { gap: 28px; flex-wrap: wrap; }
+    }
+
+    .fade { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Diario de un Trader</div>
+    <ul class="nav-links">
+      <li><a href="#sistema">El Sistema</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#productos">Programas</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://wa.me/543704700739" class="btn btn-primary" style="padding:10px 20px;font-size:0.82rem;">WhatsApp →</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sistema"   onclick="closeMenu()">El Sistema</a>
+  <a href="#nosotros"  onclick="closeMenu()">Nosotros</a>
+  <a href="#productos" onclick="closeMenu()">Programas</a>
+  <a href="#faq"       onclick="closeMenu()">FAQ</a>
+  <a href="https://wa.me/543704700739" class="btn btn-primary">WhatsApp →</a>
+</div>
+
+<!-- ==============================
+     HERO
+============================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left fade">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          Sistema CRT — Candle Range Theory
+        </div>
+        <h1>La plata que perdiste no fue mala suerte.</h1>
+        <p class="hero-sub">
+          Fue falta de sistema. El mercado tiene una lógica que se puede aprender — y eso es exactamente lo que enseñamos.
+        </p>
+        <div class="hero-cta">
+          <a href="#productos" class="btn btn-primary">Ver programas →</a>
+          <a href="#sistema"   class="btn btn-ghost">Conocer el sistema</a>
+        </div>
+        <div class="hero-rule">
+          <div>
+            <div class="hero-stat-n">+400</div>
+            <div class="hero-stat-l">Setups documentados</div>
+          </div>
+          <div>
+            <div class="hero-stat-n">1:2+</div>
+            <div class="hero-stat-l">R:R mínimo por trade</div>
+          </div>
+          <div>
+            <div class="hero-stat-n">3 años</div>
+            <div class="hero-stat-l">Desarrollando el sistema</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right fade">
+        <div class="setup-card">
+          <div class="setup-card-header">
+            <div>
+              <div class="setup-card-title">Setup activo</div>
+              <div class="setup-card-pair">EUR/USD · 1H</div>
+            </div>
+            <div class="setup-badge">CRT Confirmado</div>
+          </div>
+          <div style="margin-bottom:6px;">
+            <div class="chart-line"><span class="chart-line-label">OHP</span></div>
+          </div>
+          <div class="mini-chart">
+            <div class="mc bull"><div class="mc-wick" style="height:10px"></div><div class="mc-body" style="height:30px"></div><div class="mc-wick" style="height:4px"></div></div>
+            <div class="mc bear"><div class="mc-wick" style="height:6px"></div><div class="mc-body" style="height:22px"></div><div class="mc-wick" style="height:8px"></div></div>
+            <div class="mc bull"><div class="mc-wick" style="height:4px"></div><div class="mc-body" style="height:40px"></div><div class="mc-wick" style="height:4px"></div></div>
+            <div class="mc bear"><div class="mc-wick" style="height:14px"></div><div class="mc-body" style="height:18px"></div><div class="mc-wick" style="height:5px"></div></div>
+            <div class="mc bear"><div class="mc-wick" style="height:8px"></div><div class="mc-body" style="height:28px"></div><div class="mc-wick" style="height:10px"></div></div>
+            <div class="mc bear"><div class="mc-wick" style="height:5px"></div><div class="mc-body" style="height:48px"></div><div class="mc-wick" style="height:4px"></div></div>
+            <div class="mc signal"><div class="mc-wick" style="height:18px"></div><div class="mc-body" style="height:14px"></div><div class="mc-wick" style="height:6px"></div></div>
+            <div class="mc bull"><div class="mc-wick" style="height:4px"></div><div class="mc-body" style="height:36px"></div><div class="mc-wick" style="height:4px"></div></div>
+          </div>
+          <div style="margin-bottom:20px;">
+            <div class="chart-line"><span class="chart-line-label">OLP</span></div>
+          </div>
+          <div class="setup-layers">
+            <div class="setup-layer"><span class="setup-layer-name">Capa 1 — Rango HTF identificado</span><span class="setup-layer-status status-ok">✓</span></div>
+            <div class="setup-layer"><span class="setup-layer-name">Capa 2 — Keylevel confirmado</span><span class="setup-layer-status status-ok">✓</span></div>
+            <div class="setup-layer"><span class="setup-layer-name">Capa 3 — Trigger de entrada</span><span class="setup-layer-status status-ok">✓</span></div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div>
+            <div class="result-label">Resultado del trade</div>
+            <div class="result-value">TP-2 alcanzado</div>
+            <div class="result-note">SL respetado · Gestión según plan</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="rr-value">+2.4R</div>
+            <div class="rr-label">Ratio obtenido</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     PROBLEMA
+============================== -->
+<section class="section problema">
+  <div class="container">
+    <div class="problema-inner">
+      <div class="problema-left fade">
+        <span class="label">El problema real</span>
+        <h2>La mayoría opera sin sistema.<br />Y lo sabe.</h2>
+        <p>No perdés porque el mercado sea impredecible. Perdés porque no tenés un proceso claro que seguir cuando la presión aparece.</p>
+        <p>¿Te identificás con alguna de estas situaciones?</p>
+      </div>
+      <div class="problema-right">
+        <div class="pain-item fade">
+          <span class="pain-n">01</span>
+          <div class="pain-text"><strong>Abrís operaciones por FOMO</strong><p>Ves el precio moverse y entrás tarde, sin setup, arrepintiéndote apenas confirmás la orden.</p></div>
+        </div>
+        <div class="pain-item fade">
+          <span class="pain-n">02</span>
+          <div class="pain-text"><strong>Movés el stop por miedo</strong><p>En lugar de respetar el plan, expandís el SL "para darle espacio" y terminás perdiendo el doble.</p></div>
+        </div>
+        <div class="pain-item fade">
+          <span class="pain-n">03</span>
+          <div class="pain-text"><strong>Cada sesión es diferente</strong><p>Un día usás indicadores, otro day trading, otro scalping. No hay consistencia. No hay proceso.</p></div>
+        </div>
+        <div class="pain-item fade">
+          <span class="pain-n">04</span>
+          <div class="pain-text"><strong>Trading de venganza</strong><p>Después de una pérdida, redobrás la apuesta para recuperar. Y terminás en el mismo lugar o peor.</p></div>
+        </div>
+        <div class="pain-item fade">
+          <span class="pain-n">05</span>
+          <div class="pain-text"><strong>Compraste cursos y seguís igual</strong><p>Más indicadores, más conceptos, menos claridad. Nadie te enseñó a pensar — solo a copiar.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     ABOUT
+============================== -->
+<section class="section about" id="nosotros">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-left fade">
+        <span class="label">Quiénes somos</span>
+        <h2>Dos traders.<br />Un sistema propio.</h2>
+        <p class="about-lead">Guillermo y Mauricio. Más de 3 años operando, estudiando y documentando cada movimiento del mercado.</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <span class="about-stat-n">+400</span>
+            <span class="about-stat-l">setups documentados y analizados</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-n">1:2.3</span>
+            <span class="about-stat-l">R:R promedio registrado en operativa real</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-n">3</span>
+            <span class="about-stat-l">años refinando el sistema hasta tener consistencia</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-n">3</span>
+            <span class="about-stat-l">mercados validados: Forex, índices y crypto</span>
+          </div>
+        </div>
+        <div class="about-actions">
+          <a href="https://instagram.com/diariodeuntraderg" class="btn btn-ghost">Instagram →</a>
+          <a href="#productos" class="btn btn-primary">Ver programas →</a>
+        </div>
+      </div>
+      <div class="about-right fade">
+        <p>Empezamos como la mayoría: siguiendo señales de otros, comprando cursos prometedores, buscando el indicador mágico que nunca llegó. Perdimos plata. Mucha. Y lo más valioso que teníamos: tiempo.</p>
+        <p>Después de más de 3 años operando en los mercados, estudiando precio, fallando y volviendo a empezar, entendimos algo que nadie nos había enseñado: <strong>el mercado tiene una lógica. Y esa lógica se puede aprender.</strong></p>
+        <p>Lo que descubrimos en ese proceso cambió todo: el precio no se mueve de forma aleatoria. Se mueve para buscar liquidez — los stops de los traders minoristas — antes de ir a donde realmente va. Ese patrón se repite. En cualquier instrumento, en cualquier timeframe. Y es completamente predecible cuando sabés leerlo.</p>
+        <p>Con eso construimos el sistema CRT — Candle Range Theory. Sin mentores, sin comunidades de pago, sin copiar a nadie. <strong>Probando hipótesis en gráficos reales, documentando más de 400 operaciones, refinando hasta tener algo que funciona con consistencia.</strong></p>
+        <p>Hoy creamos Diario de un Trader con un objetivo claro: enseñarte a pensar como un trader, no a seguir como uno.</p>
+        <div class="about-highlight">
+          <p>Eso es lo que nos hubiera cambiado todo cuando empezamos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     SISTEMA — TEASER
+============================== -->
+<section class="section sistema" id="sistema">
+  <div class="container">
+    <div class="sistema-intro fade">
+      <span class="label">La metodología</span>
+      <h2>Un sistema de 3 capas.<br />Sin las 3 alineadas, no hay operación.</h2>
+      <p style="margin-top:14px;">Cada capa responde una pregunta específica. Juntas forman el único contexto en el que vale la pena arriesgar capital.</p>
+    </div>
+    <div class="layers fade">
+      <div class="layer">
+        <div class="layer-n">Capa 01</div>
+        <h3>HTF — El Rango</h3>
+        <p>Identificamos la estructura de alto timeframe que define el campo de operación y la dirección probable del siguiente movimiento.</p>
+        <p class="layer-q"><strong>Responde:</strong> ¿Cuál es el rango? ¿Hacia dónde? ¿Cuáles son los targets?</p>
+        <div class="layer-locked">Criterios exactos — contenido del curso</div>
+      </div>
+      <div class="layer">
+        <div class="layer-n">Capa 02</div>
+        <h3>LTF — La Zona</h3>
+        <p>Dentro del rango identificado, localizamos las zonas institucionales exactas donde el precio tiene alta probabilidad de reaccionar.</p>
+        <p class="layer-q"><strong>Responde:</strong> ¿Desde dónde exactamente va a rebotar el precio?</p>
+        <div class="layer-locked">Los 5 Keylevels — contenido del curso</div>
+      </div>
+      <div class="layer">
+        <div class="layer-n">Capa 03</div>
+        <h3>Trigger — El Momento</h3>
+        <p>La confirmación visual y objetiva de que la manipulación ya ocurrió. El momento exacto de entrada que elimina la subjetividad.</p>
+        <p class="layer-q"><strong>Responde:</strong> ¿Cuándo exactamente entrar?</p>
+        <div class="layer-locked">Definición completa — contenido del curso</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     COMPARISON
+============================== -->
+<section class="section comparison">
+  <div class="container">
+    <div class="comparison-inner">
+      <div class="comparison-left fade">
+        <span class="label">Por qué funciona</span>
+        <h2>La ventaja que la mayoría ignora.</h2>
+        <p>El mercado se mueve de forma algorítmica. Busca la liquidez acumulada en extremos previos antes de realizar el movimiento real.</p>
+        <p>Ese patrón es predecible, repetible y explotable. El sistema CRT está construido alrededor de eso — no alrededor de indicadores que llegan tarde.</p>
+      </div>
+      <div class="comp-table fade">
+        <div class="comp-head">
+          <span>Criterio</span><span>Trading común</span><span>Sistema CRT</span>
+        </div>
+        <div class="comp-row"><div>Base</div><div class="comp-bad">Indicadores</div><div class="comp-good">Lógica de mercado</div></div>
+        <div class="comp-row"><div>Entrada</div><div class="comp-bad">Subjetiva</div><div class="comp-good">Trigger objetivo</div></div>
+        <div class="comp-row"><div>Stop Loss</div><div class="comp-bad">Estimado</div><div class="comp-good">Calculado con reglas</div></div>
+        <div class="comp-row"><div>Gestión</div><div class="comp-bad">Emocional</div><div class="comp-good">SI → ENTONCES</div></div>
+        <div class="comp-row"><div>R:R</div><div class="comp-bad">Variable</div><div class="comp-good">Mínimo 1:2</div></div>
+        <div class="comp-row"><div>Psicología</div><div class="comp-bad">Sin protocolo</div><div class="comp-good">Reglas de protección</div></div>
+        <div class="comp-row"><div>Reproducible</div><div class="comp-bad">No</div><div class="comp-good">Sí — con checklist</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     VIDEO — EL CRT EN ACCIÓN
+============================== -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-intro fade">
+      <span class="label">El sistema en acción</span>
+      <h2>Así marcamos un CRT antes de ejecutar.</h2>
+      <p>No explicaciones teóricas. El proceso real, en tiempo real: cómo identificamos el rango, la zona y el trigger antes de abrir una sola orden.</p>
+    </div>
+    <div class="video-wrapper fade">
+      <video src="assets/crt-demo.mp4" controls muted playsinline preload="metadata"></video>
+      <div class="video-caption">GBP/USD · Sesión Londres · Sistema CRT — Marcación en tiempo real</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     SETUPS REALES
+============================== -->
+<section class="section setups">
+  <div class="container">
+    <div class="setups-intro fade">
+      <span class="label">Setups reales</span>
+      <h2>Operaciones de hoy.<br />Proceso real.</h2>
+      <p style="margin-top:14px;">GBP/USD esta mañana. El sistema aplicado tal cual — en TradingView y en MT5. Sin edición, sin cherry-picking.</p>
+    </div>
+    <div class="setups-grid">
+      <div class="setup-img-card fade">
+        <img src="assets/trade-01.png" alt="Setup CRT — GBP/USD M5 — Trade 01" loading="lazy" />
+        <div class="setup-img-meta">
+          <div>
+            <div class="setup-img-pair">GBP/USD · M5 · TradingView</div>
+            <div class="setup-img-detail">08 Mayo 2026 · Sesión Londres</div>
+          </div>
+          <div class="setup-img-tag">Zona CRT</div>
+        </div>
+      </div>
+      <div class="setup-img-card fade">
+        <img src="assets/trade-02.png" alt="Setup CRT — GBP/USD M5 — Trade 02" loading="lazy" />
+        <div class="setup-img-meta">
+          <div>
+            <div class="setup-img-pair">GBP/USD · M5 · TradingView</div>
+            <div class="setup-img-detail">08 Mayo 2026 · Sesión Londres</div>
+          </div>
+          <div class="setup-img-tag">Model #01</div>
+        </div>
+      </div>
+      <div class="setup-img-card fade">
+        <img src="assets/mt5-trade.jpeg" alt="Setup CRT — GBP/USD M15 — MT5" loading="lazy" />
+        <div class="setup-img-meta">
+          <div>
+            <div class="setup-img-pair">GBP/USD · M15 · MT5</div>
+            <div class="setup-img-detail">07 Mayo 2026 · Ejecución real</div>
+          </div>
+          <div class="setup-img-tag">Entrada ejecutada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     TESTIMONIOS — WHATSAPP REALES
+============================== -->
+<section class="section testimonios" id="testimonios">
+  <div class="container">
+    <div class="testimonios-intro fade">
+      <span class="label">Lo que dicen los alumnos</span>
+      <h2>Mensajes de nuestros alumnos.</h2>
+      <p style="margin-top:14px;">No inventamos frases. Estas son conversaciones reales de WhatsApp con alumnos que tomaron el sistema.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade">
+        <div class="testi-img-wrap">
+          <img src="assets/testimonial-esteban.jpeg" alt="Testimonio WhatsApp — Esteban" loading="lazy" />
+        </div>
+        <div class="testi-footer">
+          <div>
+            <div class="testi-person">Esteban</div>
+            <div class="testi-location">Buenos Aires</div>
+          </div>
+          <div class="testi-tag">Alumno real</div>
+        </div>
+      </div>
+      <div class="testi-card fade">
+        <div class="testi-img-wrap">
+          <img src="assets/testimonial-jonatan.jpeg" alt="Testimonio WhatsApp — Jonatan" loading="lazy" />
+        </div>
+        <div class="testi-footer">
+          <div>
+            <div class="testi-person">Jonatan</div>
+            <div class="testi-location">Santa Fe</div>
+          </div>
+          <div class="testi-tag">Alumno real</div>
+        </div>
+      </div>
+    </div>
+    <p class="testi-disclaimer">* Capturas de WhatsApp reales. Compartidas con autorización de los alumnos.</p>
+  </div>
+</section>
+
+<!-- ==============================
+     LEAD MAGNET
+============================== -->
+<section class="lead-magnet" id="leadmagnet">
+  <div class="container">
+    <div class="lm-inner">
+      <div class="lm-left fade">
+        <span class="label">Gratis</span>
+        <div class="lm-pdf-tag">
+          📄 PDF — Los 3 errores que destruyen cualquier cuenta de trading
+        </div>
+        <h2>Empezá por acá antes de gastar un peso.</h2>
+        <p>El material con el que arranca todo. Los 3 errores más comunes que cometen los traders y que les hacen perder capital sin darse cuenta. Sin costo, sin spam.</p>
+      </div>
+      <div class="lm-right fade">
+        <form action='/gracias' class='lm-form' method='POST' name='lead-magnet'>
+          <input type="hidden" name="form-name" value="lead-magnet" />
+          <input type="hidden" name="bot-field" />
+          <input type="email" name="email" placeholder="Tu email" required />
+          <button type="submit" class="btn btn-primary">Quiero el PDF gratis →</button>
+          <p class="lm-note">Lo enviamos en menos de 5 minutos. Sin spam, prometido.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     PRODUCTOS
+============================== -->
+<section class="section productos" id="productos">
+  <div class="container">
+    <div class="productos-intro fade">
+      <span class="label">Programas</span>
+      <h2>Elegí el nivel que más se adapta a vos.</h2>
+      <p style="margin-top:14px;">Cada programa está pensado para un momento distinto del camino. Si no sabés cuál elegir, escribinos por WhatsApp.</p>
+    </div>
+
+    <div class="cards fade">
+      <div class="card">
+        <div class="card-label">Starter</div>
+        <h3>Pack Inicial CRT</h3>
+        <p>Para entender la lógica base del sistema antes de invertir en el curso completo.</p>
+        <div class="card-soon">Próximamente</div>
+        <div class="card-note">Se abre el lunes 11/05/2026</div>
+        <hr class="card-sep">
+        <ul>
+          <li><span class="card-check">✓</span> PDF: Lógica institucional del mercado</li>
+          <li><span class="card-check">✓</span> PDF: Los 4 errores mentales del trader</li>
+          <li><span class="card-check">✓</span> Guía de gestión del riesgo (1–2% por trade)</li>
+          <li><span class="card-check">✓</span> Introducción a las 3 capas del sistema</li>
+          <li><span class="card-check">✓</span> Acceso al grupo de Telegram</li>
+        </ul>
+        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20para%20el%20Pack%20Starter%20CRT" class="btn btn-ghost">Anotarme →</a>
+      </div>
+
+      <div class="card featured">
+        <div class="card-badge">Más elegido</div>
+        <div class="card-label">Completo</div>
+        <h3>Curso Sistema CRT</h3>
+        <p>El sistema completo, explicado capa por capa. Desde la lógica hasta la ejecución real.</p>
+        <div class="card-soon">Próximamente</div>
+        <div class="card-note">Se abre el lunes 11/05/2026</div>
+        <hr class="card-sep">
+        <ul>
+          <li><span class="card-check">✓</span> Las 3 capas del sistema en profundidad</li>
+          <li><span class="card-check">✓</span> Los 5 Keylevels con criterios de validación</li>
+          <li><span class="card-check">✓</span> El Trigger de entrada: definición y casos reales</li>
+          <li><span class="card-check">✓</span> Checklist operativo completo</li>
+          <li><span class="card-check">✓</span> Sistema de decisión SI → ENTONCES</li>
+          <li><span class="card-check">✓</span> Gestión del trade: SL, TP-1, TP-2</li>
+          <li><span class="card-check">✓</span> Módulo de psicología operativa</li>
+          <li><span class="card-check">✓</span> Ejemplos reales grabados en video</li>
+          <li><span class="card-check">✓</span> Grupo privado de alumnos</li>
+        </ul>
+        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20para%20el%20Curso%20Completo%20CRT" class="btn btn-ghost">Anotarme →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Premium</div>
+        <h3>Mentoría 1 a 1</h3>
+        <p>Trabajo directo con vos. Analizamos tu operativa, corregimos en tiempo real y construimos tu proceso.</p>
+        <div class="card-soon">Próximamente</div>
+        <div class="card-note">Se abre el lunes 11/05/2026</div>
+        <hr class="card-sep">
+        <ul>
+          <li><span class="card-check">✓</span> Todo lo del Curso Completo incluido</li>
+          <li><span class="card-check">✓</span> 2 sesiones en vivo 1 a 1 por Zoom</li>
+          <li><span class="card-check">✓</span> Revisión de tus operaciones en tiempo real</li>
+          <li><span class="card-check">✓</span> Feedback sobre tus análisis diarios</li>
+          <li><span class="card-check">✓</span> Soporte directo por WhatsApp (30 días)</li>
+          <li><span class="card-check">✓</span> Plan personalizado según tu estilo</li>
+          <li><span class="card-check">✓</span> Seguimiento semana a semana</li>
+        </ul>
+        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20para%20la%20Mentor%C3%ADa%201%20a%201" class="btn btn-ghost">Anotarme →</a>
+      </div>
+    </div>
+
+    <!-- Garantía al lado de los precios -->
+    <div class="guarantee-strip fade">
+      <span class="gs-icon">🛡️</span>
+      <span><strong>Garantía de 7 días:</strong> si en una semana no encontrás valor real en el material, te devolvemos el dinero. Sin preguntas, sin vueltas.</span>
+    </div>
+
+    <div class="club-teaser fade">
+      <div>
+        <div class="label">Próximamente</div>
+        <h3>Club CRT — Membresía mensual</h3>
+        <p>Análisis en vivo, sesiones grupales, comunidad activa y acceso al sistema en tiempo real.</p>
+      </div>
+      <div>
+        <div class="club-price">$25<span>/mes</span></div>
+        <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20anotarme%20a%20la%20lista%20de%20espera%20del%20Club%20CRT" class="btn btn-ghost" style="margin-top:12px;">Lista de espera →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ==============================
+     FAQ
+============================== -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-left fade">
+        <span class="label">FAQ</span>
+        <h2>Preguntas frecuentes.</h2>
+        <p>Si no encontrás lo que buscás, escribinos — respondemos el mismo día.</p>
+        <a href="https://wa.me/543704700739" class="btn btn-primary">WhatsApp →</a>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item fade">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Para qué nivel de trader es el sistema? <span class="faq-icon">+</span></div>
+          <div class="faq-a">El sistema CRT está pensado para traders que ya tienen nociones básicas del mercado — qué es una vela, un timeframe, un stop loss — pero no tienen un proceso claro y consistente. No es para completos principiantes, pero tampoco requiere años de experiencia.</div>
+        </div>
+        <div class="faq-item fade">
+          <div class="faq-q" onclick="toggleFaq(this)">¿En qué instrumentos funciona? <span class="faq-icon">+</span></div>
+          <div class="faq-a">El sistema CRT es aplicable a cualquier instrumento con alta liquidez: pares de forex mayores (EUR/USD, GBP/USD), índices principales (SPX, NAS, DAX) y criptomonedas de alta capitalización. No funciona en instrumentos de baja liquidez o mercados sin estructura clara.</div>
+        </div>
+        <div class="faq-item fade">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo por día necesito dedicarle? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Para intradía con timeframe de 1H, podés operar en 30–60 minutos de análisis por día. Para swing (4H/Daily), incluso menos. El sistema está diseñado para sesiones de Londres y Nueva York. La mayor parte del tiempo es espera, no pantalla.</div>
+        </div>
+        <div class="faq-item fade">
+          <div class="faq-q" onclick="toggleFaq(this)">¿El sistema garantiza ganancias? <span class="faq-icon">+</span></div>
+          <div class="faq-a">No. Ningún sistema garantiza ganancias. El trading implica riesgo de pérdida de capital. Lo que el sistema CRT ofrece es un proceso con lógica, reglas claras y R:R mínimo 1:2 que, con consistencia en la ejecución, construye una ventaja estadística a largo plazo.</div>
+        </div>
+        <div class="faq-item fade">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Cuál es la diferencia entre el curso y la mentoría? <span class="faq-icon">+</span></div>
+          <div class="faq-a">El curso explica el sistema completo a tu ritmo. La mentoría agrega trabajo personalizado: analizamos tu operativa específica, revisamos tus trades, identificamos tus errores concretos y construimos un plan adaptado a vos. Si tomaste el curso pero algo no funciona, la mentoría es el siguiente paso.</div>
+        </div>
+        <div class="faq-item fade">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Cómo accedo al material después de pagar? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Una vez confirmado el pago, recibís acceso inmediato. Para mentorías, agendamos la primera sesión en las primeras 48 horas. Cualquier duda, escribinos directo por WhatsApp.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     FINAL CTA
+============================== -->
+<section class="final-cta">
+  <div class="container">
+    <span class="label">Empezá ahora</span>
+    <h2>¿Seguís operando<br />sin proceso?</h2>
+    <p>Cada semana sin un sistema claro es una semana de pérdidas evitables. No necesariamente en dinero — en tiempo, energía y capital emocional.</p>
+    <div class="cta-row">
+      <a href="#productos" class="btn btn-primary">Ver todos los programas →</a>
+      <a href="https://wa.me/543704700739?text=Hola%2C%20quiero%20información%20sobre%20el%20sistema%20CRT" class="btn btn-ghost">Escribinos por WhatsApp</a>
+    </div>
+    <div class="final-guarantee">🛡️ Garantía de 7 días — sin preguntas.</div>
+  </div>
+</section>
+
+<!-- ==============================
+     FOOTER
+============================== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Diario de un Trader</div>
+      <div class="footer-links">
+        <a href="#sistema">El Sistema</a>
+        <a href="#productos">Programas</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://instagram.com/diariodeuntraderg">Instagram</a>
+        <a href="https://wa.me/543704700739">WhatsApp</a>
+      </div>
+      <div class="footer-copy">© 2026 Diario de un Trader</div>
+    </div>
+    <p class="footer-legal">El trading en mercados financieros implica riesgo de pérdida de capital. El contenido de esta página es educativo y no constituye asesoramiento financiero. Los resultados pasados no garantizan resultados futuros.</p>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+  function closeMenu()   { document.getElementById('mobileMenu').classList.remove('active'); }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 55);
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--primary)' : ''; });
+  });
+</script>
+</body>
+</html>

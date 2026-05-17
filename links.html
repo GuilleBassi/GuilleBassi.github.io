@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diario de un Trader — Links</title>
+  <meta name="description" content="Sistema CRT: trading simple y con criterio. Todos los links de Diario de un Trader.">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23003157'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='Inter,sans-serif' font-weight='800' fill='white'>D</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --bg:       #EFEFED;
+      --primary:  #003157;
+      --accent:   #004371;
+      --border:   rgba(0, 49, 87, 0.10);
+      --text-60:  rgba(0, 49, 87, 0.60);
+      --white:    #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 20px 64px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Avatar */
+    .avatar {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .header-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .header-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .header-bio {
+      font-size: 0.875rem;
+      color: var(--text-60);
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    /* Links */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .link-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 20px;
+      border-radius: 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.18s;
+      position: relative;
+    }
+    .link-btn:hover {
+      border-color: rgba(0, 49, 87, 0.25);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0, 49, 87, 0.08);
+    }
+    .link-btn:active {
+      transform: translateY(0);
+    }
+
+    .link-btn.featured {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .link-btn.featured .link-label,
+    .link-btn.featured .link-sub,
+    .link-btn.featured .link-arrow {
+      color: var(--white);
+    }
+    .link-btn.featured .link-sub {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .link-btn.featured:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(0, 49, 87, 0.25);
+    }
+
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      background: var(--bg);
+      color: var(--primary);
+    }
+    .link-btn.featured .link-icon {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+    }
+    .icon-instagram { background: #E1306C; color: #fff; }
+    .icon-tiktok    { background: #000000; color: #fff; }
+    .icon-youtube   { background: #FF0000; color: #fff; }
+    .icon-whatsapp  { background: #25D366; color: #fff; }
+    .icon-web       { background: var(--primary); color: #fff; }
+    .icon-pdf       { background: rgba(255,255,255,0.15); color: #fff; }
+    .link-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .link-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: block;
+      line-height: 1.3;
+    }
+    .link-sub {
+      font-size: 0.75rem;
+      color: var(--text-60);
+      display: block;
+      margin-top: 1px;
+    }
+    .link-arrow {
+      font-size: 0.85rem;
+      color: var(--text-60);
+      flex-shrink: 0;
+    }
+
+    /* Divider con label */
+    .section-label {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0 2px;
+    }
+    .section-label span {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0, 49, 87, 0.35);
+      white-space: nowrap;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 36px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .footer-legal {
+      font-size: 0.68rem;
+      color: rgba(0, 49, 87, 0.35);
+      line-height: 1.5;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="avatar">D</div>
+
+    <div class="header">
+      <div class="header-tag">Sistema CRT</div>
+      <div class="header-name">Diario de un Trader</div>
+      <p class="header-bio">Trading simple y con criterio. Un método para operar en forex, índices y cripto desde el primer día.</p>
+    </div>
+
+    <div class="links">
+
+      <!-- Destacado -->
+      <a href="https://wa.me/5493704700739?text=Hola%2C%20quiero%20el%20PDF%20gratis" class="link-btn featured">
+        <span class="link-icon icon-pdf">🎁</span>
+        <div class="link-text">
+          <span class="link-label">PDF Gratis — Empezá por acá</span>
+          <span class="link-sub">Los 3 errores que destruyen cualquier cuenta</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Web -->
+      <a href="https://diario-de-un-trader.netlify.app" class="link-btn">
+        <span class="link-icon icon-web"><i class="fa-solid fa-globe"></i></span>
+        <div class="link-text">
+          <span class="link-label">El Sistema CRT</span>
+          <span class="link-sub">Conocé el método completo</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Redes -->
+      <div class="section-label"><span>Redes</span></div>
+
+      <a href="https://www.instagram.com/diariodeuntraderg" class="link-btn">
+        <span class="link-icon icon-instagram"><i class="fa-brands fa-instagram"></i></span>
+        <div class="link-text">
+          <span class="link-label">Instagram</span>
+          <span class="link-sub">@diariodeuntraderg</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://www.tiktok.com/@diariodeuntraderg" class="link-btn">
+        <span class="link-icon icon-tiktok"><i class="fa-brands fa-tiktok"></i></span>
+        <div class="link-text">
+          <span class="link-label">TikTok</span>
+          <span class="link-sub">@diariodeuntraderg</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://www.youtube.com/@DiariodeunTraderG" class="link-btn">
+        <span class="link-icon icon-youtube"><i class="fa-brands fa-youtube"></i></span>
+        <div class="link-text">
+          <span class="link-label">YouTube</span>
+          <span class="link-sub">@DiariodeunTraderG</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Contacto -->
+      <div class="section-label"><span>Contacto</span></div>
+
+      <a href="https://wa.me/5493704700739" class="link-btn">
+        <span class="link-icon icon-whatsapp"><i class="fa-brands fa-whatsapp"></i></span>
+        <div class="link-text">
+          <span class="link-label">WhatsApp</span>
+          <span class="link-sub">Escribinos directo</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-brand">Diario de un Trader</div>
+      <p class="footer-legal">El trading implica riesgo de pérdida de capital. El contenido es educativo y no constituye asesoramiento financiero.</p>
+    </div>
+
+  </div>
+</body>
+</html>
