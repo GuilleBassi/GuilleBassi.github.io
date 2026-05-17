@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -425,6 +426,56 @@
       color: rgba(255,255,255,0.35);
       margin-top: 14px;
     }
+  .sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--primary);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 999;
+    padding: 12px 24px;
+  }
+  .sticky-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .sticky-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    font-family: Inter, sans-serif;
+  }
+  .sticky-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .sticky-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: Inter, sans-serif;
+    text-decoration: none;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .sticky-wa { background: #25D366; color: white; }
+  .sticky-wa:hover { background: #1ebe5d; }
+  .sticky-dl { background: rgba(255,255,255,0.12); color: white; border: 1.5px solid rgba(255,255,255,0.2) !important; }
+  .sticky-dl:hover { background: rgba(255,255,255,0.2); }
+  body { padding-bottom: 70px; }
+  @media print { .sticky-bar { display: none; } }
+  @media (max-width: 600px) {
+    .sticky-label { display: none; }
+    .sticky-btns { width: 100%; }
+    .sticky-btn { flex: 1; justify-content: center; }
+  }
   </style>
 </head>
 <body>
@@ -794,5 +845,14 @@
   </div>
 </div>
 
+<div class="sticky-bar">
+  <div class="sticky-inner">
+    <div class="sticky-label">¿Listo para dar el siguiente paso?</div>
+    <div class="sticky-btns">
+      <a href="https://wa.me/5493704700739?text=Hola%2C+le%C3%AD+el+PDF+y+me+interesa+la+mentor%C3%ADa+1+a+1" class="sticky-btn sticky-wa"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
+      <button onclick="window.print()" class="sticky-btn sticky-dl"><i class="fa-solid fa-download"></i> Guardar PDF</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
